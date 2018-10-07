@@ -6,18 +6,21 @@ public class HexTileMapGenerator : MonoBehaviour
 {
     public GameObject hexTilePrefab;
 
-    public int mapWidth = 25;
-    public int mapHeight = 12;
+    public int mapWidth;
+    public int mapHeight;
 
-    public float tileXOffset = 1.8f;
-    public float tileYoffset = 0f;
-    public float tileZoffset = 1.565f;
+
+    //1.8, 0, 1.565
+    private float tileXOffset = 1.00f;
+    private float tileYoffset = 0f;
+    private float tileZoffset = 1.00f;
 
 
 	// Use this for initialization
 	void Start ()
     {
         CreateHexTileMap();
+
 	}
 	
     void CreateHexTileMap ()
@@ -38,30 +41,24 @@ public class HexTileMapGenerator : MonoBehaviour
                 }
                 else
                 {
-                    TempGO.transform.position = new Vector3(x * tileXOffset + tileXOffset / 2, y * tileYoffset, z * tileZoffset);
+                    TempGO.transform.position = new Vector3(x * tileXOffset, y * tileYoffset, z * tileZoffset);
                 }
 
                 //calls SetTileInfo
+                
                 SetTileInfo(TempGO, x, y, z);
             }
         }
-
+        Debug.Log("Finished Tile Map");
     }
 
-    void OnMouseOver()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Destroy(this.gameObject);
-            //print("Mouse Click 0");
-        }
-    }
 
     void SetTileInfo(GameObject GO, int x, int y, int z)
     {
-
         GO.transform.parent = transform;
-        GO.name = x.ToString() + ", " + z.ToString() + ", " + y.ToString(); 
+        GO.name = x.ToString() + ", " + z.ToString() + ", " + y.ToString();
+        //TileManager.currentMaterial = 0;
+
     }
 
 
