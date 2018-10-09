@@ -59,7 +59,11 @@ public class ClickAction : MonoBehaviour {
         {
             ToolMode = 2;
         }
-
+        else if (CurrentToolString == "Create Pipe")
+        {
+            ToolMode = 3;
+        }
+        
         //Debug.Log(ToolMode + "  " + CurrentToolString);
 
         if (CurrentAssetString == "Tank")
@@ -102,66 +106,10 @@ public class ClickAction : MonoBehaviour {
         {
             TileMode = 4;
         }
+    }
 
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    Vector2 MP = Input.mousePosition;
-
-
-
-        //    if (MP.y <= ClickLimitHeight)
-        //    {
-        //        if (UserInMenu == false)
-        //        {
-        //            Ray toMouse = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //            RaycastHit rhInfo;
-
-        //            UserInMenu = false;
-
-        //            bool didHit = Physics.Raycast(toMouse, out rhInfo, 500.0f);
-
-        //            if (didHit)
-        //            {
-        //                if (CurrentToolString == "Info")
-        //                {
-        //                    //Debug.Log(CurrentToolString + "   " + CurrentAssetString + "   " + CurrentTileString);
-        //                    bool tileStatus = rhInfo.collider.gameObject.GetComponent<TileManager>().toggleStatus();
-        //                    Debug.Log("Info tag clicked on " + rhInfo.collider.name + " is currently " + tileStatus);
-
-        //                }
-        //                else if (CurrentToolString=="Create Asset")
-        //                {
-        //                    Debug.Log("Create Asset of type " + CurrentAssetString);
-
-        //                }
-        //                else if (CurrentToolString=="Change Type")
-        //                {
-        //                    Debug.Log("Change Tile Type on tile " + rhInfo.collider.name);
-        //                }
-        //                //Debug.Log(CurrentToolString + "   " + CurrentAssetString + "   " + CurrentTileString);
-        //                //Debug.Log(rhInfo.collider.name + "   " + rhInfo.point + "    " + MP);
-        //            }
-        //            else
-        //            {
-        //                //Debug.Log("Clicked Empty     " + MP);
-        //            }
-        //        }
-        //        else
-        //        {
-        //            UserInMenu = false;
-        //            Debug.Log("Exiting Menu     " + UserInMenu);
-        //        }
-
-        //    }
-        //    else
-        //    {
-
-        //        UserInMenu = true;
-        //        Debug.Log("Clicked Menu Bar   " + UserInMenu);
-        //    }
-
-        //}
-
-
+    void StartPipe(Vector3 initialPoint)
+    {
+        Debug.Log(initialPoint);
     }
 }

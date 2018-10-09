@@ -23,6 +23,7 @@ public class GameTime : MonoBehaviour {
         float GameTime = Time.timeSinceLevelLoad;
         //GameTime.ToString("F2");
 
-        text.text = "Game time: " + GameTime.ToString("F0");
+        //text.text = "Game time: " + GameTime.ToString("F0");
+        text.text =  GameTime.ToString("F0");
     }
 }

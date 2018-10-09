@@ -12,6 +12,7 @@ public class TileManager : MonoBehaviour {
     public int currentMaterial;
     public int newMaterial;
     public bool TileSelected;
+    public bool Occupied;
 
     private bool UserInMenu = false;
 
@@ -192,10 +193,24 @@ public class TileManager : MonoBehaviour {
                         currentMaterial = 5;
                     }
                 }
-                else
+                else if (ClickAction.ToolMode == 3)
+                {
+                    //Create Pipe Mode
+
+                    Debug.Log("Tile Manager On-Click");
+                    
+                    //Vector3 PassTileCoord;
+                    //PassTileCoord = this.gameObject.transform.position;
+
+                }
+                else if (ClickAction.ToolMode == 0)
                 {
                     //Info mode
-                    //Debug.Log(this.gameObject.name);
+                    Debug.Log(this.gameObject.name);
+                }
+                else
+                {
+                    Debug.Log("Tool Mode not configured correctly.");
                 }
             }
             else
@@ -218,10 +233,7 @@ public class TileManager : MonoBehaviour {
         return status;
     }
 
-    public void ChangeType(int newType, int oldType)
-    {
 
-    }
 
 
 }
