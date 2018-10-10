@@ -5,13 +5,14 @@ using UnityEngine;
 public class CreatePipe : MonoBehaviour{
 
     bool creating;
-    public GameObject start;
-    public GameObject end;
+    private GameObject start;
+    private GameObject end;
 
     private string StartName;
     private string StopName;
 
     public GameObject PipePreFab;
+    public GameObject NodePreFab;
     GameObject Pipe;
     public Camera camera;
 
@@ -31,14 +32,19 @@ public class CreatePipe : MonoBehaviour{
         {
             if (ClickAction.ToolMode == 3)
             {
-                SetStart();
+                SetPipeStart();
             }
+            else if (ClickAction.ToolMode == 1)
+            {
+
+            }
+
         }
         else if (Input.GetMouseButtonUp(1))
         {
             if (ClickAction.ToolMode == 3)
             {
-                SetEnd();
+                SetPipeEnd();
 
             }
         }
@@ -55,22 +61,48 @@ public class CreatePipe : MonoBehaviour{
         }
     }
 
-    void SetStart()
+    void SetPipeStart()
     {
         creating = true;
+        start = Instantiate(NodePreFab);
+
+        Debug.Log("instantiate complete.");
+
         start.transform.position = GetWorldPoint();
+        //Need to not instantiate if node already exists.......
+
+        Debug.Log("transform compelte");
+
+        start.name = "Node @ " + start.transform.position.ToString();
+        start.transform.parent = GameObject.Find("PipeNetwork").transform;
         StartName = start.transform.position.ToString();
+
+
+
+        end = Instantiate(NodePreFab);
+
+        end.transform.position = GetWorldPoint();
+        
+
+        //end.name = "Node @ " + end.transform.position.ToString();
+        end.transform.parent = GameObject.Find("PipeNetwork").transform;
+
+
+
+
         Pipe = Instantiate(PipePreFab, start.transform.position, Quaternion.identity) as GameObject;
         Pipe.transform.parent = GameObject.Find("PipeNetwork").transform;
-        Pipe.transform.Rotate(90, 0, 0);
+        //Pipe.transform.Rotate(90, 0, 0);
         
     }
 
-    void SetEnd()
+    void SetPipeEnd()
     {
         creating = false;
-        end.transform.position = GetWorldPoint();
+
+        end.name = "Node @ " + end.transform.position.ToString();
         StopName = end.transform.position.ToString();
+        //end.transform.position =
 
         Pipe.name = "Pipe " + StartName + " to " + StopName;
 
@@ -80,6 +112,7 @@ public class CreatePipe : MonoBehaviour{
 
     void Adjust()
     {
+        //end = Instantiate(NodePreFab);
         end.transform.position = GetWorldPoint();
         AdjustPipe();
     }
@@ -98,8 +131,8 @@ public class CreatePipe : MonoBehaviour{
         Pipe.transform.position = start.transform.position + distance / 2 * start.transform.forward;
         //Pipe.transform.rotation = PipeRotate;
         Pipe.transform.rotation = start.transform.rotation;
-        Pipe.transform.localScale = new Vector3(Pipe.transform.localScale.x, Pipe.transform.localScale.y, distance/2);
-
+        Pipe.transform.localScale = new Vector3(Pipe.transform.localScale.x, 0.5f, distance/2);
+        //Pipe.transform.localScale.y
     }
 
     Vector3 GetWorldPoint()
