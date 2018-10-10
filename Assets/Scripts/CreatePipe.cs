@@ -11,6 +11,15 @@ public class CreatePipe : MonoBehaviour{
     private string StartName;
     private string StopName;
 
+    private Vector3 StartVector;
+    private Vector3 StopVector;
+    private Vector3 ObjectHit;
+    private string ObjectHitName;
+    private string ObjectHitParentName;
+
+    private bool DestroyStart;
+    private bool DestroyStop;
+
     public GameObject PipePreFab;
     public GameObject NodePreFab;
     GameObject Pipe;
@@ -64,56 +73,132 @@ public class CreatePipe : MonoBehaviour{
     void SetPipeStart()
     {
         creating = true;
-        start = Instantiate(NodePreFab);
+        RaycastHit hitInfo;
+        string TestString;
 
-        Debug.Log("instantiate complete.");
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        Physics.Raycast(ray, out hitInfo);
+        ObjectHit = hitInfo.transform.gameObject.transform.position;
 
-        start.transform.position = GetWorldPoint();
-        //Need to not instantiate if node already exists.......
+        ObjectHitParentName = hitInfo.transform.parent.name;
+        ObjectHitName = hitInfo.transform.name;
 
-        Debug.Log("transform compelte");
+        Debug.Log("Parent: " + ObjectHitParentName);
+        Debug.Log("Name: " + ObjectHitName);
 
-        start.name = "Node @ " + start.transform.position.ToString();
-        start.transform.parent = GameObject.Find("PipeNetwork").transform;
-        StartName = start.transform.position.ToString();
+        if (ObjectHitParentName == "PipeNetwork" || ObjectHitParentName == "AssetRegistry")
+        {
+            //start = Instantiate(NodePreFab);
+            start = GameObject.Find(hitInfo.transform.name);
+            DestroyStart = true;
+            //Debug.Log("start instantiate complete.");
+
+            start.transform.position = ObjectHit;
+            //Need to not instantiate if node already exists.......
+
+            //Debug.Log("start transform complete");
+
+            start.name = "Node @ " + start.transform.position.ToString();
+            start.transform.parent = GameObject.Find("PipeNetwork").transform;
+            start.layer = 0;
+            StartName = start.transform.position.ToString();
+
+            end = Instantiate(NodePreFab);
+
+            end.transform.position = GetWorldPoint();
+
+            //end.name = "Node @ " + end.transform.position.ToString();
+            end.transform.parent = GameObject.Find("PipeNetwork").transform;
 
 
+            Pipe = Instantiate(PipePreFab, start.transform.position, Quaternion.identity) as GameObject;
+            Pipe.transform.parent = GameObject.Find("PipeNetwork").transform;
+            //Pipe.transform.Rotate(90, 0, 0);
+        }
+        else
+        {
+            start = Instantiate(NodePreFab);
+            DestroyStart = false;
 
-        end = Instantiate(NodePreFab);
+            //Debug.Log("start instantiate complete.");
 
-        end.transform.position = GetWorldPoint();
-        
+            start.transform.position = ObjectHit;
+            //Need to not instantiate if node already exists.......
 
-        //end.name = "Node @ " + end.transform.position.ToString();
-        end.transform.parent = GameObject.Find("PipeNetwork").transform;
+            //Debug.Log("start transform complete");
+
+            start.name = "Node @ " + start.transform.position.ToString();
+            start.transform.parent = GameObject.Find("PipeNetwork").transform;
+            start.layer = 0;
+            StartName = start.transform.position.ToString();
+
+            end = Instantiate(NodePreFab);
+
+            end.transform.position = GetWorldPoint();
+
+            //end.name = "Node @ " + end.transform.position.ToString();
+            end.transform.parent = GameObject.Find("PipeNetwork").transform;
 
 
-
-
-        Pipe = Instantiate(PipePreFab, start.transform.position, Quaternion.identity) as GameObject;
-        Pipe.transform.parent = GameObject.Find("PipeNetwork").transform;
-        //Pipe.transform.Rotate(90, 0, 0);
-        
+            Pipe = Instantiate(PipePreFab, start.transform.position, Quaternion.identity) as GameObject;
+            Pipe.transform.parent = GameObject.Find("PipeNetwork").transform;
+            //Pipe.transform.Rotate(90, 0, 0);
+        }
     }
 
     void SetPipeEnd()
     {
         creating = false;
+        //Debug.Log("Setting Pipe End " + DestroyStop);
 
-        end.name = "Node @ " + end.transform.position.ToString();
-        StopName = end.transform.position.ToString();
-        //end.transform.position =
+        if (DestroyStop == false)
+        {
+            end.name = "Node @ " + end.transform.position.ToString();
+            end.layer = 0;
+            StopName = end.transform.position.ToString();
+            //end.transform.position =
 
-        Pipe.name = "Pipe " + StartName + " to " + StopName;
+            Pipe.name = "Pipe " + StartName + " to " + StopName;
 
-        Debug.Log(Pipe.name + "  " + StartName + "   " + StopName);
+            //Debug.Log(Pipe.name + "  " + StartName + "   " + StopName);
+        }
+        else
+        {
+            StopName = end.transform.position.ToString();
+            Pipe.name = "Pipe " + StartName + " to " + StopName;
+            GameObject.Destroy(end);
+        }
+
 
     }
 
     void Adjust()
     {
-        //end = Instantiate(NodePreFab);
-        end.transform.position = GetWorldPoint();
+        RaycastHit hitInfo;
+        string TestString;
+
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        Physics.Raycast(ray, out hitInfo);
+        ObjectHit = hitInfo.transform.gameObject.transform.position;
+
+        ObjectHitParentName = hitInfo.transform.parent.name;
+        ObjectHitName = hitInfo.transform.name;
+
+        //Debug.Log("Parent: " + ObjectHitParentName);
+        //Debug.Log("Name: " + ObjectHitName);
+
+        if (ObjectHitParentName == "PipeNetwork" || ObjectHitParentName == "AssetRegistry")
+        {
+            DestroyStop = true;
+        }
+        else
+        {
+            DestroyStop = false;
+        }
+
+        end.transform.position = ObjectHit;
+        //Debug.Log(DestroyStop);
+        //end.transform.position = GetWorldPoint();
         AdjustPipe();
     }
 
@@ -123,28 +208,27 @@ public class CreatePipe : MonoBehaviour{
         end.transform.LookAt(start.transform);
 
         float distance = Vector3.Distance(start.transform.position, end.transform.position);
-        //Quaternion PipeRotate;
-        //PipeRotate.x = 90;
-        //PipeRotate.y = start.transform.rotation.y;
-        //PipeRotate.z = start.transform.rotation.z;
-        //PipeRotate.w = 0;
+
         Pipe.transform.position = start.transform.position + distance / 2 * start.transform.forward;
-        //Pipe.transform.rotation = PipeRotate;
+
         Pipe.transform.rotation = start.transform.rotation;
         Pipe.transform.localScale = new Vector3(Pipe.transform.localScale.x, 0.5f, distance/2);
-        //Pipe.transform.localScale.y
+
     }
 
     Vector3 GetWorldPoint()
     {
         RaycastHit hitInfo;
+        string TestString;
 
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hitInfo))
         {
             Vector3 objectHit = hitInfo.transform.gameObject.transform.position;
-            //Debug.Log(objectHit);
+            TestString = hitInfo.transform.parent.name;
+            
+            //Debug.Log(message: hitInfo.transform.parent.name);
             return objectHit;
 
         }
@@ -157,8 +241,8 @@ public class CreatePipe : MonoBehaviour{
 
     }
 
-    void StartPipe(Vector3 initialPosition)
-    {
-        Debug.Log(initialPosition);
-    }
+    //void StartPipe(Vector3 initialPosition)
+    //{
+    //    Debug.Log(initialPosition);
+    //}
 }
