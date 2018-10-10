@@ -29,17 +29,28 @@ public class CreatePipe : MonoBehaviour{
     {
         if (Input.GetMouseButtonDown(1))
         {
-            SetStart();
+            if (ClickAction.ToolMode == 3)
+            {
+                SetStart();
+            }
         }
         else if (Input.GetMouseButtonUp(1))
         {
-            SetEnd();
+            if (ClickAction.ToolMode == 3)
+            {
+                SetEnd();
+
+            }
         }
         else
         {
             if (creating)
             {
-                Adjust();
+                if (ClickAction.ToolMode == 3)
+                {
+                    Adjust();
+                }
+              
             }
         }
     }
