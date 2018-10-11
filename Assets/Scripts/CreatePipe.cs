@@ -68,6 +68,7 @@ public class CreatePipe : MonoBehaviour{
                         start = Instantiate(Assets[0]);
 
                         Debug.Log("tank instantiate complete.");
+
                         Vector3 m = new Vector3(ObjectHit.x, 0.355f, ObjectHit.z);
                         start.transform.position = m;
 
@@ -83,7 +84,8 @@ public class CreatePipe : MonoBehaviour{
 
                         Debug.Log("pump instantiate complete.");
 
-                        start.transform.position = ObjectHit;
+                        Vector3 m = new Vector3(ObjectHit.x, 0.127f, ObjectHit.z);
+                        start.transform.position = m;
 
                         Debug.Log("pump transform complete");
 
@@ -97,11 +99,12 @@ public class CreatePipe : MonoBehaviour{
 
                         Debug.Log("PRV instantiate complete.");
 
-                        start.transform.position = ObjectHit;
+                        Vector3 m = new Vector3(ObjectHit.x, 0.1f, ObjectHit.z);
+                        start.transform.position = m;
 
                         Debug.Log("PRV transform complete");
 
-                        start.name = " @ " + start.transform.position.ToString();
+                        start.name = "PRV @ " + start.transform.position.ToString();
                         start.transform.parent = GameObject.Find("AssetRegistry").transform;
                     }
                     else if (ClickAction.AssetMode == 3)
@@ -111,7 +114,8 @@ public class CreatePipe : MonoBehaviour{
 
                         Debug.Log("Valve instantiate complete.");
 
-                        start.transform.position = ObjectHit;
+                        Vector3 m = new Vector3(ObjectHit.x, 0.1f, ObjectHit.z);
+                        start.transform.position = m;
 
                         Debug.Log("Valve transform complete");
 
