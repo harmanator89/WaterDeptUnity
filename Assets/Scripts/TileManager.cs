@@ -11,6 +11,7 @@ public class TileManager : MonoBehaviour {
 
     public int currentMaterial;
     public int newMaterial;
+    public GameObject NewAsset;
     public bool TileSelected;
     public bool Occupied;
 
@@ -163,6 +164,29 @@ public class TileManager : MonoBehaviour {
                 if (ClickAction.ToolMode == 1)
                 {
                     //Create Asset
+                    Debug.Log("Tile Manager Create Asset");
+
+                    if (ClickAction.AssetMode == 0)
+                    {
+                        //Tank
+
+
+                    }
+                    else if(ClickAction.AssetMode== 1)
+                    {
+                        //Pump
+                    }
+                    else if (ClickAction.AssetMode == 2)
+                    {
+                        //PRV
+                    }
+                    else if (ClickAction.AssetMode == 3)
+                    {
+                        //Valve
+                    }
+
+
+                    //AssetPlacement.SetItem()
                 }
                 else if (ClickAction.ToolMode == 2)
                 {

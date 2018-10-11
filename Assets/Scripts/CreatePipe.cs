@@ -22,6 +22,7 @@ public class CreatePipe : MonoBehaviour{
 
     public GameObject PipePreFab;
     public GameObject NodePreFab;
+    public GameObject[] Assets;
     GameObject Pipe;
     public Camera camera;
 
@@ -45,9 +46,82 @@ public class CreatePipe : MonoBehaviour{
             }
             else if (ClickAction.ToolMode == 1)
             {
+                Debug.Log("Create Pipe / Asset Mode");
 
+                RaycastHit hitInfo;
+
+                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+                Physics.Raycast(ray, out hitInfo);
+                ObjectHit = hitInfo.transform.gameObject.transform.position;
+
+                ObjectHitParentName = hitInfo.transform.parent.name;
+                ObjectHitName = hitInfo.transform.name;
+                if (ObjectHitParentName == "PipeNetwork" || ObjectHitParentName == "AssetRegistry")
+                {
+                    //Error Msg: Object already here, cannot create new asset.
+                }
+                else
+                {
+                    if (ClickAction.AssetMode == 0)
+                    {
+                        //Tank
+                        start = Instantiate(Assets[0]);
+
+                        Debug.Log("tank instantiate complete.");
+                        Vector3 m = new Vector3(ObjectHit.x, 0.355f, ObjectHit.z);
+                        start.transform.position = m;
+
+                        Debug.Log("tank transform complete");
+
+                        start.name = "Tank @ " + start.transform.position.ToString();
+                        start.transform.parent = GameObject.Find("AssetRegistry").transform;
+                    }
+                    else if (ClickAction.AssetMode == 1)
+                    {
+                        //Pump
+                        start = Instantiate(Assets[1]);
+
+                        Debug.Log("pump instantiate complete.");
+
+                        start.transform.position = ObjectHit;
+
+                        Debug.Log("pump transform complete");
+
+                        start.name = "Pump @ " + start.transform.position.ToString();
+                        start.transform.parent = GameObject.Find("AssetRegistry").transform;
+                    }
+                    else if (ClickAction.AssetMode == 2)
+                    {
+                        //PRV
+                        start = Instantiate(Assets[2]);
+
+                        Debug.Log("PRV instantiate complete.");
+
+                        start.transform.position = ObjectHit;
+
+                        Debug.Log("PRV transform complete");
+
+                        start.name = " @ " + start.transform.position.ToString();
+                        start.transform.parent = GameObject.Find("AssetRegistry").transform;
+                    }
+                    else if (ClickAction.AssetMode == 3)
+                    {
+                        //Valve
+                        start = Instantiate(Assets[3]);
+
+                        Debug.Log("Valve instantiate complete.");
+
+                        start.transform.position = ObjectHit;
+
+                        Debug.Log("Valve transform complete");
+
+                        start.name = "Valve @ " + start.transform.position.ToString();
+                        start.transform.parent = GameObject.Find("AssetRegistry").transform;
+                    }
+
+
+                }
             }
-
         }
         else if (Input.GetMouseButtonUp(1))
         {
@@ -74,8 +148,6 @@ public class CreatePipe : MonoBehaviour{
     {
         creating = true;
         RaycastHit hitInfo;
-        string TestString;
-
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
         Physics.Raycast(ray, out hitInfo);
         ObjectHit = hitInfo.transform.gameObject.transform.position;
@@ -98,8 +170,16 @@ public class CreatePipe : MonoBehaviour{
 
             //Debug.Log("start transform complete");
 
-            start.name = "Node @ " + start.transform.position.ToString();
-            start.transform.parent = GameObject.Find("PipeNetwork").transform;
+            if (ObjectHitParentName == "PipeNetwork")
+            {
+                start.name = "Node @ " + start.transform.position.ToString();
+                start.transform.parent = GameObject.Find("PipeNetwork").transform;
+                start.layer = 0;
+            }
+            else
+            {
+
+            }
             start.layer = 0;
             StartName = start.transform.position.ToString();
 
@@ -175,8 +255,6 @@ public class CreatePipe : MonoBehaviour{
     void Adjust()
     {
         RaycastHit hitInfo;
-        string TestString;
-
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
         Physics.Raycast(ray, out hitInfo);
         ObjectHit = hitInfo.transform.gameObject.transform.position;

@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 4475848948702878}
   - component: {fileID: 54993868607972538}
   - component: {fileID: 65179482071799406}
+  - component: {fileID: 114987198667657312}
   m_Layer: 0
   m_Name: Valve
   m_TagString: Valves
@@ -262,3 +263,14 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114987198667657312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1963902551789480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc4167913ef421641921dd5098fca06b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
