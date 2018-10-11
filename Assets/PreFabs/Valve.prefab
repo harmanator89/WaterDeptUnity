@@ -274,3 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4167913ef421641921dd5098fca06b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ValveStatus: 0
+  ValveMaterials:
+  - {fileID: 2100000, guid: 827514c04bad0214eaa30fe80aa8fd9c, type: 2}
+  - {fileID: 2100000, guid: 6cd0b99bec944214aadcf4418eadbcee, type: 2}
