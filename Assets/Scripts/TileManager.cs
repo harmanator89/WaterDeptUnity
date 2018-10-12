@@ -31,7 +31,11 @@ public class TileManager : MonoBehaviour {
     // Use this for initialization
     void Start() {
         m_Renderer = GetComponent<MeshRenderer>();
-        RandomStartMaterial = Random.Range(0, 8);
+        RandomStartMaterial = Random.Range(0, 6);
+        if (RandomStartMaterial == 1)
+        {
+            RandomStartMaterial = 0;
+        }
         //Debug.Log(RandomStartMaterial);
         m_Renderer.material = tileMaterials[0];
     }
