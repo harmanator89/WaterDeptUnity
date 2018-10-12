@@ -120,5 +120,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 1b4c5360f1128044aa74a16faa6c25e1, type: 2}
   currentMaterial: 0
   newMaterial: 0
+  RandomStartMaterial: 3
+  NewAsset: {fileID: 0}
   TileSelected: 0
   Occupied: 0

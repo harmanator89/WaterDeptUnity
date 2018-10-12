@@ -6,11 +6,13 @@ public class TileManager : MonoBehaviour {
 
 
     private ClickAction clickAction;
+    bool Started = false;
     bool status = true;
     public Material[] tileMaterials;
 
     public int currentMaterial;
     public int newMaterial;
+    public int RandomStartMaterial;
     public GameObject NewAsset;
     public bool TileSelected;
     public bool Occupied;
@@ -29,11 +31,20 @@ public class TileManager : MonoBehaviour {
     // Use this for initialization
     void Start() {
         m_Renderer = GetComponent<MeshRenderer>();
+        RandomStartMaterial = Random.Range(0, 8);
+        //Debug.Log(RandomStartMaterial);
         m_Renderer.material = tileMaterials[0];
     }
 
     // Update is called once per frame
     void Update() {
+        if (Started == false)
+        {
+            currentMaterial = RandomStartMaterial;
+            Debug.Log(this.name);
+            Started = true;
+        }
+
         if (currentMaterial == 0)
         {
             m_Renderer.material = tileMaterials[0];

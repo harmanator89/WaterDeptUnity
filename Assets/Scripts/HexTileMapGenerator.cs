@@ -56,9 +56,12 @@ public class HexTileMapGenerator : MonoBehaviour
     void SetTileInfo(GameObject GO, int x, int y, int z)
     {
         GO.transform.parent = transform;
-        GO.name = x.ToString() + ", " + y.ToString() + ", " + z.ToString();
-        //TileManager.currentMaterial = 0;
 
+        // Full Name
+        //GO.name = x.ToString() + ", " + y.ToString() + ", " + z.ToString();
+
+        //Partial Name
+        GO.name = x.ToString() + ", " + z.ToString();
     }
 
 
