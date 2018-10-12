@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -311,7 +311,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 170076733}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: -0, z: -4.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1471344824}
@@ -1764,7 +1764,6 @@ GameObject:
   - component: {fileID: 811243820}
   - component: {fileID: 811243819}
   - component: {fileID: 811243822}
-  - component: {fileID: 811243823}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -1843,22 +1842,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd98496e549c00b449177b501839d186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &811243823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 811243818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dce3516cd992dbd46bafe490aac4578f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  assets:
-  - {fileID: 1308182891964092, guid: bb468e12d40598d42b9994819c975cc2, type: 2}
-  - {fileID: 1667359868499638, guid: a9dd36df09ac1484ca345648531fb25d, type: 2}
-  - {fileID: 1007926195430324, guid: a4f32cddc89d0e34ea4043e97e96aa79, type: 2}
-  - {fileID: 1963902551789480, guid: 29eb9271c4e7f7d43b6dfd232f5c59d8, type: 2}
 --- !u!1 &850140608
 GameObject:
   m_ObjectHideFlags: 0
@@ -1873,6 +1856,7 @@ GameObject:
   - component: {fileID: 850140613}
   - component: {fileID: 850140614}
   - component: {fileID: 850140615}
+  - component: {fileID: 850140616}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1989,7 +1973,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PipePreFab: {fileID: 1464557273747640, guid: ce5953051c8b6e24d96b269e9d6cab36, type: 2}
   NodePreFab: {fileID: 1979310075287252, guid: fbe5c8a6a161ce245aacf763c0c7d95f, type: 2}
+  Assets:
+  - {fileID: 1007926195430324, guid: a4f32cddc89d0e34ea4043e97e96aa79, type: 2}
+  - {fileID: 1667359868499638, guid: a9dd36df09ac1484ca345648531fb25d, type: 2}
+  - {fileID: 1308182891964092, guid: bb468e12d40598d42b9994819c975cc2, type: 2}
+  - {fileID: 1963902551789480, guid: 29eb9271c4e7f7d43b6dfd232f5c59d8, type: 2}
   camera: {fileID: 811243820}
+--- !u!114 &850140616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 850140608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dce3516cd992dbd46bafe490aac4578f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assets: []
 --- !u!1 &930007756
 GameObject:
   m_ObjectHideFlags: 0
@@ -3662,26 +3663,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sun: {fileID: 170076735}
   moon: {fileID: 2144548212}
-  distanceFromOrgin: 10000
-  daySpeed: 0.1
+  DayCounter: 0
+  distanceFromOrgin: 1000
+  daySpeed: 0.03
   orbitAngle: 0
   sunrisePOS: 0
-  dayProgress: 5
+  dayProgress: 45
 --- !u!4 &1471344824
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1471344822}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: -2657, y: 3, z: -1534}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 170076735}
   - {fileID: 2144548212}
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: 0}
 --- !u!1 &1531632524
 GameObject:
   m_ObjectHideFlags: 0

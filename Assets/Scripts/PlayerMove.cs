@@ -10,6 +10,8 @@ public class PlayerMove : MonoBehaviour {
     private float mapTiledHeight;
     private float mapTiledWidth;
 
+
+
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
@@ -34,8 +36,8 @@ public class PlayerMove : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+    }
 
     //physics code
     void FixedUpdate()

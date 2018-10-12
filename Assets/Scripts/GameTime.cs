@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class GameTime : MonoBehaviour {
 
+    public static int GameDays;
+    string TimeText;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -24,6 +27,7 @@ public class GameTime : MonoBehaviour {
         //GameTime.ToString("F2");
 
         //text.text = "Game time: " + GameTime.ToString("F0");
-        text.text =  GameTime.ToString("F0");
+        TimeText =  GameTime.ToString("F0");
+        text.text = TimeText + "  " + GameDays; 
     }
 }

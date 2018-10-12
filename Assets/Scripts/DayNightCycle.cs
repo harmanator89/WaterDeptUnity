@@ -6,8 +6,12 @@ public class DayNightCycle : MonoBehaviour {
 
     public Transform sun, moon;
 
-    [SerializeField] int distanceFromOrgin = 10;
-    [SerializeField] float daySpeed = .085f;
+    bool DayCheck;
+    public int DayCounter;
+    float DaySpinCounter;
+
+    [SerializeField] int distanceFromOrgin;
+    [SerializeField] float daySpeed;
 
     [SerializeField] int orbitAngle;
     [SerializeField] int sunrisePOS;
@@ -39,6 +43,22 @@ public class DayNightCycle : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate ()
     {
-        transform.Rotate(0, 0, daySpeed);	
+        transform.Rotate(0, 0, daySpeed);
+        DaySpinCounter += daySpeed;
+        //Debug.Log(DaySpinCounter);
+        if (DaySpinCounter >= 360)
+        {
+            Debug.Log(DaySpinCounter + "  " + DayCounter);
+            DaySpinCounter = 0;
+            DayCounter += 1;
+            GameTime.GameDays = DayCounter;
+        }
+
 	}
+
+    void Update ()
+    {
+
+        
+    }
 }
