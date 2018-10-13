@@ -20,6 +20,7 @@ public class HexTileMapGenerator : MonoBehaviour
 	void Start ()
     {
         CreateHexTileMap();
+        CreateNoiseMap();
 
 	}
 	
@@ -52,6 +53,7 @@ public class HexTileMapGenerator : MonoBehaviour
             }
         }
         Debug.Log("Finished Tile Map");
+
     }
 
 
@@ -72,4 +74,9 @@ public class HexTileMapGenerator : MonoBehaviour
 	void Update () {
 		
 	}
+
+    void CreateNoiseMap ()
+    {
+        Debug.Log("Create Noise Map");
+    }
 }
