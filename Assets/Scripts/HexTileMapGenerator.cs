@@ -6,8 +6,8 @@ public class HexTileMapGenerator : MonoBehaviour
 {
     public GameObject hexTilePrefab;
 
-    public int mapWidth;
-    public int mapHeight;
+    public static int mapWidth = 100;
+    public static int mapHeight = 100;
 
 
     //1.8, 0, 1.565
@@ -25,7 +25,9 @@ public class HexTileMapGenerator : MonoBehaviour
 	
     void CreateHexTileMap ()
     {
-        for(int x = 0; x <= mapWidth; x++)
+        ClickAction.MapWaterTileTotal = mapHeight * mapWidth * ClickAction.MapWaterPercentage;
+
+        for (int x = 0; x <= mapWidth; x++)
         {
             for(int z = 0; z <= mapHeight; z++)
             {
@@ -61,7 +63,7 @@ public class HexTileMapGenerator : MonoBehaviour
         //GO.name = x.ToString() + ", " + y.ToString() + ", " + z.ToString();
 
         //Partial Name
-        GO.name = x.ToString() + ", " + z.ToString();
+        GO.name = x.ToString() + "," + z.ToString();
     }
 
 

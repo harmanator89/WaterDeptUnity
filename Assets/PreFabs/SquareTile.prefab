@@ -118,6 +118,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 263a9fcfce9ccdf46b7458b787b15243, type: 2}
   - {fileID: 2100000, guid: 427bd495cf189ae42a4836c2e330af6d, type: 2}
   - {fileID: 2100000, guid: 1b4c5360f1128044aa74a16faa6c25e1, type: 2}
+  - {fileID: 2100000, guid: 2fe3015cce9b3d246bce7c028ceffe83, type: 2}
   currentMaterial: 0
   newMaterial: 0
   RandomStartMaterial: 3

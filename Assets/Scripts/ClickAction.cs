@@ -18,6 +18,8 @@ public class ClickAction : MonoBehaviour {
     public static int AssetMode;
     public static int TileMode;
 
+    public static float MapWaterPercentage = 0.3f;
+    public static float MapWaterTileTotal;
 
     public static int CommercialCustomers;
     public static int ResidentialCustomers;
@@ -105,6 +107,10 @@ public class ClickAction : MonoBehaviour {
         else if (CurrentTileString == "Street")
         {
             TileMode = 4;
+        }
+        else if (CurrentTileString == "Water")
+        {
+            TileMode = 5;
         }
     }
 

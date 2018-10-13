@@ -13,77 +13,172 @@ public class TileManager : MonoBehaviour {
     public int currentMaterial;
     public int newMaterial;
     public int RandomStartMaterial;
+    public int RandomWater;
+    public int WaterChance;
+
+    public string FindName;
+    public float FindNameX;
+    public float FindNameZ;
+    public bool FindGameObject;
+
+    public bool LeftWater;
+    public bool RightWater;
+    public bool TopWater;
+    public bool BottomWater;
+
     public GameObject NewAsset;
     public bool TileSelected;
+    public bool IsWater;
     public bool Occupied;
 
     private bool UserInMenu = false;
 
     public static Material CurrentType;
 
+    private string NameSplit;
+    private int FoundPosition;
+    public float NameX;
+    public float NameY;
+    public float NameZ;
+
 
     MeshRenderer m_Renderer;
 
-
-
-
-
+         
     // Use this for initialization
     void Start() {
         m_Renderer = GetComponent<MeshRenderer>();
-        RandomStartMaterial = Random.Range(0, 6);
-        if (RandomStartMaterial == 1)
-        {
-            RandomStartMaterial = 0;
-        }
-        //Debug.Log(RandomStartMaterial);
+        //Gives each tile a random material
+        //RandomStartMaterial = Random.Range(0, 6);
+        //if (RandomStartMaterial == 1)
+        //{
+        //    RandomStartMaterial = 0;
+        //}
+        ////Debug.Log(RandomStartMaterial);
         m_Renderer.material = tileMaterials[0];
+
+        NameX = this.gameObject.transform.position.x;
+        NameY = this.gameObject.transform.position.y;
+        NameZ = this.gameObject.transform.position.z;
+
+        NameSplit = this.name;
+
+        //Debug.Log(NameSplit + "      " + NameX + "       " + NameZ);
+
     }
 
     // Update is called once per frame
     void Update() {
+        
+        // If first time running, and MapWaterTileTotal has water tiles still available
         if (Started == false)
         {
-            currentMaterial = RandomStartMaterial;
-            Debug.Log(this.name);
-            Started = true;
+            if (this.name == "40,30")
+            {
+                currentMaterial = 9;
+                IsWater = true;
+            }
+            //if (ClickAction.MapWaterTileTotal >= 0)
+            //{
+            //    //If nearby is water ==> higher chance of water
+            //    RandomWater = Random.Range(0, 200);
+
+            //    for (int i = 0; i <= 1; i++)
+            //    {
+            //        for (int j = 0; j <= 1; j++)
+            //        {
+            //            FindNameX = NameX + 1 - (i*2);
+            //            FindNameZ = NameZ + 1 - (j * 2);
+
+            //            if (FindNameX >= 0 && FindNameX <= HexTileMapGenerator.mapWidth)
+            //            {
+            //                if (FindNameZ >= 0 && FindNameZ <= HexTileMapGenerator.mapHeight)
+            //                {
+            //                    FindName = FindNameX + "," + FindNameZ;
+
+
+
+            //                    FindGameObject = GameObject.Find(FindName).GetComponent<TileManager>().IsWater;
+            //                    if (FindGameObject == true)
+            //                    {
+            //                        WaterChance += 50;
+            //                    }
+            //                }
+            //            }
+            //        }
+            //    }
+
+            //    //WaterChance += 10;
+
+            //    //Debug.Log(this.name + "    " + WaterChance);
+
+            //    if (RandomWater <= WaterChance)
+            //    {
+            //        currentMaterial = 9;
+            //        IsWater = true;
+            //        ClickAction.MapWaterTileTotal -= 1;
+            //    }
+
+            //}
+            //if (ClickAction.MapWaterTileTotal <= 2)
+            //{
+                Started = true;
+            //}
+
         }
+
+
+
 
         if (currentMaterial == 0)
         {
             m_Renderer.material = tileMaterials[0];
+            IsWater = false;
         }
         else if (currentMaterial == 1)
         {
             m_Renderer.material = tileMaterials[1];
+            IsWater = false;
         }
         else if (currentMaterial == 2)
         {
             m_Renderer.material = tileMaterials[2];
+            IsWater = false;
         }
         else if (currentMaterial == 3)
         {
             m_Renderer.material = tileMaterials[3];
+            IsWater = false;
         }
         else if (currentMaterial == 4)
         {
             m_Renderer.material = tileMaterials[4];
+            IsWater = false;
         }
         else if (currentMaterial == 5)
         {
             m_Renderer.material = tileMaterials[5];
+            IsWater = false;
         }
         else if (currentMaterial == 6)
         {
             m_Renderer.material = tileMaterials[6];
+            IsWater = false;
         }
         else if (currentMaterial == 7)
         {
             m_Renderer.material = tileMaterials[7];
+            IsWater = false;
         }
         else if (currentMaterial == 8)
         {
             m_Renderer.material = tileMaterials[8];
+            IsWater = false;
+        }
+        else if (currentMaterial == 9)
+        {
+            m_Renderer.material = tileMaterials[9];
+            IsWater = true;
         }
     }
 
@@ -184,8 +279,6 @@ public class TileManager : MonoBehaviour {
                     if (ClickAction.AssetMode == 0)
                     {
                         //Tank
-
-
                     }
                     else if(ClickAction.AssetMode== 1)
                     {
@@ -231,6 +324,11 @@ public class TileManager : MonoBehaviour {
                         //Street
                         currentMaterial = 5;
                     }
+                    else if (ClickAction.TileMode == 5)
+                    {
+                        //Water
+                        currentMaterial = 9;
+                    }
                 }
                 else if (ClickAction.ToolMode == 3)
                 {
@@ -245,7 +343,7 @@ public class TileManager : MonoBehaviour {
                 else if (ClickAction.ToolMode == 0)
                 {
                     //Info mode
-                    Debug.Log(this.gameObject.name);
+                    Debug.Log(this.gameObject.name + "      " + WaterChance);
                 }
                 else
                 {
