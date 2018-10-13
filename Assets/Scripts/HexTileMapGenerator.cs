@@ -21,7 +21,6 @@ public class HexTileMapGenerator : MonoBehaviour
     {
         CreateHexTileMap();
         CreateNoiseMap();
-
 	}
 	
     void CreateHexTileMap ()
