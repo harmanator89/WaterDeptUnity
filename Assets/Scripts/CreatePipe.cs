@@ -8,6 +8,10 @@ public class CreatePipe : MonoBehaviour{
     private GameObject start;
     private GameObject end;
 
+    private GameObject PlayerBase;
+    private float PlayerBaseX;
+    private float PlayerBaseY;
+
     private string StartName;
     private string StopName;
 
@@ -28,7 +32,11 @@ public class CreatePipe : MonoBehaviour{
 
 	// Use this for initialization
 	void Start () {
-		
+        PlayerBase = Instantiate(Assets[4]);
+        PlayerBaseX = HexTileMapGenerator.mapWidth / 2;
+        PlayerBaseY = HexTileMapGenerator.mapHeight / 2;
+        Vector3 PlayerBasePos = new Vector3(PlayerBaseX, 0.18f, PlayerBaseY);
+        PlayerBase.gameObject.transform.position = PlayerBasePos;
 	}
 	
 	// Update is called once per frame
@@ -155,6 +163,7 @@ public class CreatePipe : MonoBehaviour{
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
         Physics.Raycast(ray, out hitInfo);
         ObjectHit = hitInfo.transform.gameObject.transform.position;
+        
 
         ObjectHitParentName = hitInfo.transform.parent.name;
         ObjectHitName = hitInfo.transform.name;
@@ -205,7 +214,7 @@ public class CreatePipe : MonoBehaviour{
             DestroyStart = false;
 
             //Debug.Log("start instantiate complete.");
-
+            
             start.transform.position = ObjectHit;
             //Need to not instantiate if node already exists.......
 

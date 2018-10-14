@@ -9,6 +9,7 @@ public class PlayerMove : MonoBehaviour {
     public Vector3 initialization;
     private float mapTiledHeight;
     private float mapTiledWidth;
+    public GameObject PlayerBase;
 
     public float zoomSpeed;
     public float orthographicSizeMin;
@@ -33,6 +34,8 @@ public class PlayerMove : MonoBehaviour {
 
         mapTiledHeight = Height * 0.5f;
         mapTiledWidth = Width * 0.5f;
+
+        
 
         Debug.Log(mapTiledHeight + "  " + mapTiledWidth);
         Vector3 StartPosition = new Vector3(mapTiledWidth, 1, mapTiledHeight);

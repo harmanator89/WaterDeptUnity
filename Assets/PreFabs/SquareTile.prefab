@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1159581725838616}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -119,9 +119,24 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 427bd495cf189ae42a4836c2e330af6d, type: 2}
   - {fileID: 2100000, guid: 1b4c5360f1128044aa74a16faa6c25e1, type: 2}
   - {fileID: 2100000, guid: 2fe3015cce9b3d246bce7c028ceffe83, type: 2}
+  Height: 0
   currentMaterial: 0
   newMaterial: 0
   RandomStartMaterial: 3
+  RandomWater: 0
+  WaterChance: 0
+  FindName: 
+  FindNameX: 0
+  FindNameZ: 0
+  FindGameObject: 0
+  LeftWater: 0
+  RightWater: 0
+  TopWater: 0
+  BottomWater: 0
   NewAsset: {fileID: 0}
   TileSelected: 0
+  IsWater: 0
   Occupied: 0
+  NameX: 0
+  NameY: 0
+  NameZ: 0
