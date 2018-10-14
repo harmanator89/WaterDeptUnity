@@ -8,7 +8,18 @@ public class HexTileMapGenerator : MonoBehaviour
 
     public static int mapWidth = 100;
     public static int mapHeight = 100;
+    public static float WaterLevel = 0.3f;
+    public float NoiseScale;
 
+    public int Octaves;
+    [Range(0, 1)]
+    public float Persistance;
+    public float Lacunarity;
+
+    public int Seed;
+    public Vector2 Offset;
+
+    public bool AutoUpdate;
 
     //1.8, 0, 1.565
     private float tileXOffset = 1.00f;
@@ -20,7 +31,7 @@ public class HexTileMapGenerator : MonoBehaviour
 	void Start ()
     {
         CreateHexTileMap();
-        CreateNoiseMap();
+        CreateNoiseMap(mapWidth, mapHeight, Seed, NoiseScale, Octaves, Persistance, Lacunarity, Offset);
 	}
 	
     void CreateHexTileMap ()
@@ -74,8 +85,86 @@ public class HexTileMapGenerator : MonoBehaviour
 		
 	}
 
-    void CreateNoiseMap ()
+    void CreateNoiseMap (int MapWidth, int MapHeight, int seed, float scale, int octaves, float persistance, float lacunarity, Vector2 offset)
     {
         Debug.Log("Create Noise Map");
+        float[,] noiseMap = new float[MapWidth + 1, MapHeight + 1];
+
+        System.Random prng = new System.Random(seed);
+        Vector2[] octaveOffsets = new Vector2[octaves];
+        for (int i = 0; i < octaves; i++)
+        {
+            float offsetX = prng.Next(-100000, 100000) + offset.x;
+            float offsetY = prng.Next(-100000, 100000) + offset.y;
+            octaveOffsets[i] = new Vector2(offsetX, offsetY);
+
+        }
+
+        if (scale <= 0)
+        {
+            scale = 0.0001f;
+        }
+
+        float maxNoiseHeight = float.MinValue;
+        float minNoiseHeight = float.MaxValue;
+
+        for (int y=0; y < MapHeight + 1; y++)
+        {
+            for (int x = 0; x < MapWidth + 1; x++)
+            {
+                float amplitude = 1;
+                float frequency = 1;
+                float noiseHeight = 0;
+
+                for (int i = 0; i < octaves; i++)
+                {
+                    float sampleX = x / scale * frequency;
+                    float sampleY = y / scale * frequency;
+
+                    float perlinValue = Mathf.PerlinNoise(sampleX, sampleY) * 2 - 1;
+                    noiseHeight += perlinValue * amplitude;
+
+                    amplitude *= persistance;
+                    frequency *= lacunarity;
+                }
+
+                if (noiseHeight > maxNoiseHeight)
+                {
+                    maxNoiseHeight = noiseHeight;
+                }
+                else if (noiseHeight < minNoiseHeight)
+                {
+                    minNoiseHeight = noiseHeight;
+
+                }
+
+                noiseMap[x, y] = noiseHeight;
+
+            }
+        }
+        for (int y = 0; y < MapHeight + 1; y++)
+        {
+            for (int x = 0; x < MapWidth + 1; x++)
+            {
+                noiseMap[x, y] = Mathf.InverseLerp(minNoiseHeight, maxNoiseHeight, noiseMap[x, y]);
+                //Debug.Log(x + "       " + y + "        " + noiseMap[x,y]);
+                string FindName = y.ToString() + "," + x.ToString();
+
+                GameObject.Find(FindName).GetComponent<TileManager>().Height = noiseMap[x, y]; 
+            }
+        }
+        Debug.Log("Finished Noise Map");
+    }
+
+    void OnValidate()
+    {
+        if (Lacunarity < 1)
+        {
+            Lacunarity = 1;
+        }
+        if (Octaves < 0)
+        {
+            Octaves = 0;
+        }
     }
 }

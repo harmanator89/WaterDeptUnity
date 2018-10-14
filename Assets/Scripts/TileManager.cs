@@ -9,6 +9,7 @@ public class TileManager : MonoBehaviour {
     bool Started = false;
     bool status = true;
     public Material[] tileMaterials;
+    public float Height;
 
     public int currentMaterial;
     public int newMaterial;
@@ -48,13 +49,7 @@ public class TileManager : MonoBehaviour {
     // Use this for initialization
     void Start() {
         m_Renderer = GetComponent<MeshRenderer>();
-        //Gives each tile a random material
-        //RandomStartMaterial = Random.Range(0, 6);
-        //if (RandomStartMaterial == 1)
-        //{
-        //    RandomStartMaterial = 0;
-        //}
-        ////Debug.Log(RandomStartMaterial);
+
         m_Renderer.material = tileMaterials[0];
 
         NameX = this.gameObject.transform.position.x;
@@ -62,8 +57,6 @@ public class TileManager : MonoBehaviour {
         NameZ = this.gameObject.transform.position.z;
 
         NameSplit = this.name;
-
-        //Debug.Log(NameSplit + "      " + NameX + "       " + NameZ);
 
     }
 
@@ -73,61 +66,18 @@ public class TileManager : MonoBehaviour {
         // If first time running, and MapWaterTileTotal has water tiles still available
         if (Started == false)
         {
-            if (this.name == "40,30")
-            {
-                currentMaterial = 9;
-                IsWater = true;
-            }
-            //if (ClickAction.MapWaterTileTotal >= 0)
-            //{
-            //    //If nearby is water ==> higher chance of water
-            //    RandomWater = Random.Range(0, 200);
-
-            //    for (int i = 0; i <= 1; i++)
-            //    {
-            //        for (int j = 0; j <= 1; j++)
-            //        {
-            //            FindNameX = NameX + 1 - (i*2);
-            //            FindNameZ = NameZ + 1 - (j * 2);
-
-            //            if (FindNameX >= 0 && FindNameX <= HexTileMapGenerator.mapWidth)
-            //            {
-            //                if (FindNameZ >= 0 && FindNameZ <= HexTileMapGenerator.mapHeight)
-            //                {
-            //                    FindName = FindNameX + "," + FindNameZ;
-
-
-
-            //                    FindGameObject = GameObject.Find(FindName).GetComponent<TileManager>().IsWater;
-            //                    if (FindGameObject == true)
-            //                    {
-            //                        WaterChance += 50;
-            //                    }
-            //                }
-            //            }
-            //        }
-            //    }
-
-            //    //WaterChance += 10;
-
-            //    //Debug.Log(this.name + "    " + WaterChance);
-
-            //    if (RandomWater <= WaterChance)
-            //    {
-            //        currentMaterial = 9;
-            //        IsWater = true;
-            //        ClickAction.MapWaterTileTotal -= 1;
-            //    }
-
-            //}
-            //if (ClickAction.MapWaterTileTotal <= 2)
-            //{
-                Started = true;
-            //}
-
+            Started = true;
         }
 
-
+        if (Height <= HexTileMapGenerator.WaterLevel)
+        {
+            currentMaterial = 9;
+            IsWater = true;
+        }
+        else
+        {
+            IsWater = false;
+        }
 
 
         if (currentMaterial == 0)
@@ -262,7 +212,7 @@ public class TileManager : MonoBehaviour {
         int CSWidth = Screen.width;
 
         //Excludes clicking on the tiles when click on the toolbar at the top
-        double ClickLimitHeight = CSHeight * 0.95;
+        double ClickLimitHeight = CSHeight * 0.93;
         //double ClickLimithWidth = CSWidth * 0.95;
 
         Vector2 MP = Input.mousePosition;
@@ -343,7 +293,7 @@ public class TileManager : MonoBehaviour {
                 else if (ClickAction.ToolMode == 0)
                 {
                     //Info mode
-                    Debug.Log(this.gameObject.name + "      " + WaterChance);
+                    Debug.Log(this.gameObject.name + "      " + Height);
                 }
                 else
                 {
