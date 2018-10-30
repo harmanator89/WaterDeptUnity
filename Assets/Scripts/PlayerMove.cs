@@ -35,7 +35,7 @@ public class PlayerMove : MonoBehaviour {
         mapTiledHeight = Height * 0.5f;
         mapTiledWidth = Width * 0.5f;
 
-        
+        //PlayerBase = GameObject.Find("PlayerBase").transform.position;
 
         Debug.Log(mapTiledHeight + "  " + mapTiledWidth);
         Vector3 StartPosition = new Vector3(mapTiledWidth, 1, mapTiledHeight);

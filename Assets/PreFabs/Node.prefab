@@ -108,3 +108,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccdf451296263914983222f87083d8cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NodeMaterials:
+  - {fileID: 2100000, guid: b9ebdf016394fde49b6e6c46ef88ec87, type: 2}
+  - {fileID: 2100000, guid: 78a4ab3a37668ba4d827fe6d7f23bec4, type: 2}
+  - {fileID: 2100000, guid: fa1d26db2748768448f45907f6c72849, type: 2}
+  - {fileID: 2100000, guid: d35883d91b263054390ad6e3b7259bdb, type: 2}
+  IsRawWater: 0
+  IsFinishWater: 0

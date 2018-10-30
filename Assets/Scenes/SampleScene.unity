@@ -1987,6 +1987,7 @@ MonoBehaviour:
   - {fileID: 1308182891964092, guid: bb468e12d40598d42b9994819c975cc2, type: 2}
   - {fileID: 1963902551789480, guid: 29eb9271c4e7f7d43b6dfd232f5c59d8, type: 2}
   - {fileID: 1726516506846588, guid: 9ec1e320bf767e544b9115b8be0aa60d, type: 2}
+  - {fileID: 1269021441757546, guid: a342fd516d5db73478c7bd42db26afa7, type: 2}
   camera: {fileID: 811243820}
 --- !u!114 &850140616
 MonoBehaviour:
@@ -3608,6 +3609,8 @@ MonoBehaviour:
     - m_Text: PRV
       m_Image: {fileID: 0}
     - m_Text: Valve
+      m_Image: {fileID: 0}
+    - m_Text: Water Treatment
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

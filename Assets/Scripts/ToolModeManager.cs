@@ -18,14 +18,14 @@ public class ToolModeManager : MonoBehaviour {
         Dropdown CurrentToolMode = GameObject.Find("ToolMode").GetComponent<Dropdown>();
         string CurrentToolString = CurrentToolMode.captionText.text;
 
-        if (CurrentToolString == "Create Asset")
-        {
-            ThisButton.gameObject.SetActive(true);
-        }
-        else
-        {
-            ThisButton.gameObject.SetActive(false);
-        }
+        //if (CurrentToolString == "Create Asset")
+        //{
+        //    ThisButton.gameObject.SetActive(true);
+        //}
+        //else
+        //{
+        //    ThisButton.gameObject.SetActive(false);
+        //}
     }
 }
 

@@ -75,7 +75,7 @@ public class HexTileMapGenerator : MonoBehaviour
         //GO.name = x.ToString() + ", " + y.ToString() + ", " + z.ToString();
 
         //Partial Name
-        GO.name = x.ToString() + "," + z.ToString();
+        GO.name = "T " + x.ToString() + "," + z.ToString();
     }
 
 
@@ -148,7 +148,7 @@ public class HexTileMapGenerator : MonoBehaviour
             {
                 noiseMap[x, y] = Mathf.InverseLerp(minNoiseHeight, maxNoiseHeight, noiseMap[x, y]);
                 //Debug.Log(x + "       " + y + "        " + noiseMap[x,y]);
-                string FindName = y.ToString() + "," + x.ToString();
+                string FindName = "T " + y.ToString() + "," + x.ToString();
 
                 GameObject.Find(FindName).GetComponent<TileManager>().Height = noiseMap[x, y]; 
             }

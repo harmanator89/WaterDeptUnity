@@ -130,7 +130,21 @@ public class CreatePipe : MonoBehaviour{
                         start.name = "Valve @ " + start.transform.position.ToString();
                         start.transform.parent = GameObject.Find("AssetRegistry").transform;
                     }
+                    else if (ClickAction.AssetMode == 5)
+                    {
+                        //Water Treatment
+                        start = Instantiate(Assets[5]);
 
+                        Debug.Log("Water Treatment Instantiate complete.");
+
+                        Vector3 m = new Vector3(ObjectHit.x - 1.541f, 0.1f, ObjectHit.z + .509f);
+                        start.transform.position = m;
+
+                        Debug.Log("WT transform complete");
+
+                        start.name = "WaterTreatment @ " + start.transform.position.ToString();
+                        start.transform.parent = GameObject.Find("AssetRegistry").transform;
+                    }
 
                 }
             }
@@ -185,7 +199,7 @@ public class CreatePipe : MonoBehaviour{
 
             if (ObjectHitParentName == "PipeNetwork")
             {
-                start.name = "Node @ " + start.transform.position.ToString();
+                start.name = start.transform.position.x.ToString() + "," + start.transform.position.z.ToString();
                 start.transform.parent = GameObject.Find("PipeNetwork").transform;
                 start.layer = 0;
             }
@@ -194,7 +208,7 @@ public class CreatePipe : MonoBehaviour{
 
             }
             start.layer = 0;
-            StartName = start.transform.position.ToString();
+            StartName = start.transform.position.x.ToString() + "," + start.transform.position.z.ToString();
 
             end = Instantiate(NodePreFab);
 
@@ -220,10 +234,10 @@ public class CreatePipe : MonoBehaviour{
 
             //Debug.Log("start transform complete");
 
-            start.name = "Node @ " + start.transform.position.ToString();
+            start.name = start.transform.position.x.ToString() + "," + start.transform.position.z.ToString();
             start.transform.parent = GameObject.Find("PipeNetwork").transform;
             start.layer = 0;
-            StartName = start.transform.position.ToString();
+            StartName = start.transform.position.x.ToString() + "," + start.transform.position.z.ToString();
 
             end = Instantiate(NodePreFab);
 
@@ -246,19 +260,19 @@ public class CreatePipe : MonoBehaviour{
 
         if (DestroyStop == false)
         {
-            end.name = "Node @ " + end.transform.position.ToString();
+            end.name = end.transform.position.x.ToString() + "," + end.transform.position.z.ToString();
             end.layer = 0;
-            StopName = end.transform.position.ToString();
+            StopName = end.transform.position.x.ToString() + "," + end.transform.position.z.ToString();
             //end.transform.position =
 
-            Pipe.name = "Pipe " + StartName + " to " + StopName;
+            Pipe.name = "Pipe(" + StartName + ":" + StopName + ")";
 
             //Debug.Log(Pipe.name + "  " + StartName + "   " + StopName);
         }
         else
         {
-            StopName = end.transform.position.ToString();
-            Pipe.name = "Pipe " + StartName + " to " + StopName;
+            StopName = end.transform.position.x.ToString() + "," + end.transform.position.z.ToString();
+            Pipe.name = "Pipe(" + StartName + ":" + StopName + ")";
             GameObject.Destroy(end);
         }
 

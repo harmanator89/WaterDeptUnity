@@ -84,6 +84,10 @@ public class ClickAction : MonoBehaviour {
         {
             AssetMode = 3;
         }
+        else if (CurrentAssetString == "Water Treatment")
+        {
+            AssetMode = 5;
+        }
 
 
 
