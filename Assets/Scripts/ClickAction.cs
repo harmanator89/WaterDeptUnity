@@ -13,6 +13,15 @@ public class ClickAction : MonoBehaviour {
     string CurrentAssetString;
     string CurrentTileString;
 
+    //Sub in Linked lists (grouped by network). Instead of updating whole network
+    //only update the list the new node is on.
+
+    public int PipeCount;
+    public static int PipeUpdatedCount;
+    public int NodeCount;
+    public static int NodeUpdateCount;
+    public static bool UpdateNetwork;
+
 
     public static int ToolMode;
     public static int AssetMode;
@@ -116,10 +125,23 @@ public class ClickAction : MonoBehaviour {
         {
             TileMode = 5;
         }
+
+
+        if (PipeCount >= PipeUpdatedCount || NodeCount >= NodeUpdateCount)
+        {
+
+            UpdateNetwork = true;
+
+        }
+        else
+        {
+            UpdateNetwork = false;
+        }
+
     }
 
-    void StartPipe(Vector3 initialPoint)
-    {
-        Debug.Log(initialPoint);
-    }
+    //void StartPipe(Vector3 initialPoint)
+    //{
+    //    Debug.Log(initialPoint);
+    //}
 }

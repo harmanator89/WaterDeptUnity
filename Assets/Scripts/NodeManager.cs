@@ -33,6 +33,12 @@ public class NodeManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if (ClickAction.UpdateNetwork == true)
+        {
+            // Check connected pipes
+            ClickAction.NodeUpdateCount += 1;
+        }
+
         if (placed == false)
         {
             FindChar = this.name.IndexOf(@",");
@@ -43,7 +49,7 @@ public class NodeManager : MonoBehaviour {
             }
             else
             {
-                Debug.Log(FindChar);
+                //Debug.Log(FindChar);
                 NodeNameFirst = "T " + this.gameObject.name;
                 PlacedOnWaterTile = GameObject.Find(NodeNameFirst).GetComponent<TileManager>().IsWater;
                 placed = true;

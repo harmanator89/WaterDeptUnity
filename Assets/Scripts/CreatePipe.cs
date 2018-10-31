@@ -182,8 +182,9 @@ public class CreatePipe : MonoBehaviour{
         ObjectHitParentName = hitInfo.transform.parent.name;
         ObjectHitName = hitInfo.transform.name;
 
-        Debug.Log("Parent: " + ObjectHitParentName);
-        Debug.Log("Name: " + ObjectHitName);
+        //Debug.Log("Parent: " + ObjectHitParentName);
+        //Debug.Log("Name: " + ObjectHitName);
+        //Debug.Log("Name: " + ObjectHitName);
 
         if (ObjectHitParentName == "PipeNetwork" || ObjectHitParentName == "AssetRegistry")
         {
@@ -211,6 +212,7 @@ public class CreatePipe : MonoBehaviour{
             StartName = start.transform.position.x.ToString() + "," + start.transform.position.z.ToString();
 
             end = Instantiate(NodePreFab);
+            camera.GetComponent<ClickAction>().NodeCount += 1;
 
             end.transform.position = GetWorldPoint();
 
@@ -225,6 +227,7 @@ public class CreatePipe : MonoBehaviour{
         else
         {
             start = Instantiate(NodePreFab);
+            camera.GetComponent<ClickAction>().NodeCount += 1;
             DestroyStart = false;
 
             //Debug.Log("start instantiate complete.");
@@ -240,6 +243,7 @@ public class CreatePipe : MonoBehaviour{
             StartName = start.transform.position.x.ToString() + "," + start.transform.position.z.ToString();
 
             end = Instantiate(NodePreFab);
+            camera.GetComponent<ClickAction>().NodeCount += 1;
 
             end.transform.position = GetWorldPoint();
 
@@ -266,6 +270,9 @@ public class CreatePipe : MonoBehaviour{
             //end.transform.position =
 
             Pipe.name = "Pipe(" + StartName + ":" + StopName + ")";
+            Pipe.GetComponent<PipeManager>().IsPlaced = true;
+            ClickAction.NodeUpdateCount = 0;
+            ClickAction.PipeUpdatedCount = 0;
 
             //Debug.Log(Pipe.name + "  " + StartName + "   " + StopName);
         }
@@ -273,10 +280,12 @@ public class CreatePipe : MonoBehaviour{
         {
             StopName = end.transform.position.x.ToString() + "," + end.transform.position.z.ToString();
             Pipe.name = "Pipe(" + StartName + ":" + StopName + ")";
+            Pipe.GetComponent<PipeManager>().IsPlaced = true;
             GameObject.Destroy(end);
         }
 
-
+        camera.GetComponent<ClickAction>().PipeCount += 1;
+        Debug.Log("Pipe Count = " + camera.GetComponent<ClickAction>().PipeCount + " Node Count = " + camera.GetComponent<ClickAction>().NodeCount);
     }
 
     void Adjust()
