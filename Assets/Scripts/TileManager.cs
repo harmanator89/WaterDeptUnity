@@ -293,7 +293,7 @@ public class TileManager : MonoBehaviour {
                 else if (ClickAction.ToolMode == 0)
                 {
                     //Info mode
-                    Debug.Log(this.gameObject.name + "      " + Height);
+                    //Debug.Log(this.gameObject.name + "      " + Height);
                 }
                 else
                 {

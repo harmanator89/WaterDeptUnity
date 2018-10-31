@@ -36,6 +36,7 @@ public class NodeManager : MonoBehaviour {
         if (ClickAction.UpdateNetwork == true)
         {
             // Check connected pipes
+            //Debug.Log("Updating " + this.name);
             ClickAction.NodeUpdateCount += 1;
         }
 

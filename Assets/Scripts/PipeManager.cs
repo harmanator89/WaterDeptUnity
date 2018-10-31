@@ -17,6 +17,7 @@ public class PipeManager : MonoBehaviour {
         if (ClickAction.UpdateNetwork == true)
         {
             //Check Nodes
+            //Debug.Log("Updating " + this.name);
             ClickAction.PipeUpdatedCount += 1;
         }
 

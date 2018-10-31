@@ -282,6 +282,7 @@ public class CreatePipe : MonoBehaviour{
             Pipe.name = "Pipe(" + StartName + ":" + StopName + ")";
             Pipe.GetComponent<PipeManager>().IsPlaced = true;
             GameObject.Destroy(end);
+            camera.GetComponent<ClickAction>().NodeCount -= 1;
         }
 
         camera.GetComponent<ClickAction>().PipeCount += 1;
