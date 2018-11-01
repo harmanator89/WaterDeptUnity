@@ -9,7 +9,7 @@ public class ToolModeManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        ThisButton = GameObject.Find("CreateAssetButton").GetComponent<Button>();
+        //ThisButton = GameObject.Find("CreateAssetButton").GetComponent<Button>();
 
     }
 	

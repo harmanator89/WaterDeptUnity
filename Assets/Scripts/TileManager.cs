@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TileManager : MonoBehaviour {
 
@@ -42,6 +43,7 @@ public class TileManager : MonoBehaviour {
     public float NameY;
     public float NameZ;
 
+    private string PanelText;
 
     MeshRenderer m_Renderer;
 
@@ -225,6 +227,7 @@ public class TileManager : MonoBehaviour {
                 {
                     //Create Asset
                     Debug.Log("Tile Manager Create Asset");
+                    //ClickAction.PanelToggle = false;
 
                     if (ClickAction.AssetMode == 0)
                     {
@@ -293,6 +296,13 @@ public class TileManager : MonoBehaviour {
                 else if (ClickAction.ToolMode == 0)
                 {
                     //Info mode
+
+
+                    PanelText = this.gameObject.name.ToString();
+                    PanelManager.TitleText.text = PanelText;
+
+                    //ClickAction.PanelToggle = true;
+
                     //Debug.Log(this.gameObject.name + "      " + Height);
                 }
                 else

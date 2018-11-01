@@ -30,16 +30,24 @@ public class ClickAction : MonoBehaviour {
     public static float MapWaterPercentage = 0.3f;
     public static float MapWaterTileTotal;
 
+    public static int Funds;
     public static int CommercialCustomers;
     public static int ResidentialCustomers;
     public static int IndustrialCustomers;
 
-
-
+    public static bool PanelToggle;
+    public GameObject infoPanel;
 
 
     // Use this for initialization
     void Start () {
+        
+        //Change on Game Difficultly
+
+        Funds = 100000;
+
+        infoPanel = GameObject.Find("Panel");
+        PanelToggle = false;
 
     }
 	
@@ -61,18 +69,31 @@ public class ClickAction : MonoBehaviour {
         if (CurrentToolString == "Info")
         {
             ToolMode = 0;
+
+            PanelToggle = true;
+            infoPanel.SetActive(true);
         }
         else if (CurrentToolString =="Create Asset")
         {
             ToolMode = 1;
+
+            PanelToggle = false;
+            infoPanel.SetActive(false);
+            //Debug.Log("Panel False");
         }
         else if (CurrentToolString =="Change Type")
         {
             ToolMode = 2;
+
+            PanelToggle = false;
+            infoPanel.SetActive(false);
         }
         else if (CurrentToolString == "Create Pipe")
         {
             ToolMode = 3;
+
+            PanelToggle = false;
+            infoPanel.SetActive(false);
         }
         
         //Debug.Log(ToolMode + "  " + CurrentToolString);
