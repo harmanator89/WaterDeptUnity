@@ -43,7 +43,7 @@ public class TileManager : MonoBehaviour {
     public float NameY;
     public float NameZ;
 
-    private string PanelText;
+    private string PanelTitleText;
 
     MeshRenderer m_Renderer;
 
@@ -298,8 +298,11 @@ public class TileManager : MonoBehaviour {
                     //Info mode
 
 
-                    PanelText = this.gameObject.name.ToString();
-                    PanelManager.TitleText.text = PanelText;
+                    PanelTitleText = this.gameObject.name.ToString();
+                    //PanelText.Length - 2;
+                    PanelTitleText = PanelTitleText.Remove(0, 2);
+                    PanelTitleText = "Tile at " + PanelTitleText;
+                    PanelManager.TitleText.text = PanelTitleText;
 
                     //ClickAction.PanelToggle = true;
 
