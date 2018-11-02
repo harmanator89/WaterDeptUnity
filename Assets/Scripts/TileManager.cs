@@ -13,7 +13,9 @@ public class TileManager : MonoBehaviour {
     public int CSWidth;
     public double ClickLimitHeight;
     public double ClickLimitWidth;
-
+    public double PanelClickLimitHeight1;
+    public double PanelClickLimitHeight2;
+    public double PanelClickLimitWidth;
     public Material[] tileMaterials;
     public float Height;
 
@@ -77,7 +79,9 @@ public class TileManager : MonoBehaviour {
         //Excludes clicking on the tiles when click on the toolbar at the top
         ClickLimitHeight = CSHeight * 0.93;
         ClickLimitWidth = CSWidth * 0.95;
-        
+        PanelClickLimitHeight1 = CSHeight - 120;
+        PanelClickLimitHeight2 = 70;
+        PanelClickLimitWidth = 1585.4;
 
         if (Height <= HexTileMapGenerator.WaterLevel)
         {
@@ -209,7 +213,7 @@ public class TileManager : MonoBehaviour {
         if (MP.y > ClickLimitHeight)
         {
             //Mouse clicked in menu area
-            Debug.Log("User clicked in menu area");
+            Debug.Log("User clicked in menu area  " + MP.y);
             ClickAction.UserInMenu = true;
         }
         else
@@ -217,6 +221,7 @@ public class TileManager : MonoBehaviour {
             if (ClickAction.UserInMenu == true)
             {
                 //User clicked off of menu after clicking on it
+                Debug.Log("User clicked off menu area   ");
                 ClickAction.UserInMenu = false;
             }
             else
@@ -280,16 +285,42 @@ public class TileManager : MonoBehaviour {
                 {
                     //Info mode
 
+                    if (MP.x >= PanelClickLimitWidth)
+                    {
+                        if(MP.y <= PanelClickLimitHeight1)
+                        {
+                            if(MP.y >= PanelClickLimitHeight2)
+                            {
+                                //Do nothing user is in panel
+                            }
+                            else
+                            {
+                                PanelTitleText = this.gameObject.name.ToString();
+                                PanelTitleText = PanelTitleText.Remove(0, 2);
+                                PanelTitleText = "Tile at " + PanelTitleText;
+                                PanelManager.TitleText.text = PanelTitleText;
+                            }
+                        }
+                        else
+                        {
+                            PanelTitleText = this.gameObject.name.ToString();
+                            PanelTitleText = PanelTitleText.Remove(0, 2);
+                            PanelTitleText = "Tile at " + PanelTitleText;
+                            PanelManager.TitleText.text = PanelTitleText;
+                        }
+                    }
+                    else
+                    {
+                        PanelTitleText = this.gameObject.name.ToString();
+                        PanelTitleText = PanelTitleText.Remove(0, 2);
+                        PanelTitleText = "Tile at " + PanelTitleText;
+                        PanelManager.TitleText.text = PanelTitleText;
+                        Debug.Log(PanelClickLimitHeight1 + " > " + MP.y + " > " + PanelClickLimitHeight2 + " / " + PanelClickLimitWidth + " > " + MP.x);
+                        //ClickAction.PanelToggle = true;
 
-                    PanelTitleText = this.gameObject.name.ToString();
-                    //PanelText.Length - 2;
-                    PanelTitleText = PanelTitleText.Remove(0, 2);
-                    PanelTitleText = "Tile at " + PanelTitleText;
-                    PanelManager.TitleText.text = PanelTitleText;
+                        //Debug.Log(this.gameObject.name + "      " + Height);
+                    }
 
-                    //ClickAction.PanelToggle = true;
-
-                    //Debug.Log(this.gameObject.name + "      " + Height);
                 }
                 else if (ClickAction.ToolMode == 4)
                 {
@@ -303,102 +334,7 @@ public class TileManager : MonoBehaviour {
             }
         }
 
-        //if (MP.y <= ClickLimitHeight)
-        //{
-        //    if (UserInMenu == false)
-        //    {
-        //        if (ClickAction.ToolMode == 1)
-        //        {
-        //            //Create Asset Mode
-        //            Debug.Log("Tile Manager Create Asset");
-        //        }
-        //        else if (ClickAction.ToolMode == 2)
-        //        {
-        //            //Change Tile Type
-        //            if (ClickAction.TileMode == 0)
-        //            {
-        //                //Residential
-        //                currentMaterial = 4;
-        //                ClickAction.Funds -= ClickAction.ResidentialMeterCost;
-        //            }
-        //            else if (ClickAction.TileMode == 1)
-        //            {
-        //                //Commercial
-        //                currentMaterial = 2;
-        //                ClickAction.Funds -= ClickAction.CommercialMeterCost;
 
-        //            }
-        //            else if (ClickAction.TileMode == 2)
-        //            {
-        //                //Industrial
-        //                currentMaterial = 3;
-        //                ClickAction.Funds -= ClickAction.IndustrialMeterCost;
-
-        //            }
-        //            else if (ClickAction.TileMode == 3)
-        //            {
-        //                //Grass
-        //                currentMaterial = 0;
-        //                ClickAction.Funds -= ClickAction.GrassCost;
-
-        //            }
-        //            else if (ClickAction.TileMode == 4)
-        //            {
-        //                //Street
-        //                currentMaterial = 5;
-        //                ClickAction.Funds -= ClickAction.StreetCost;
-
-        //            }
-        //            else if (ClickAction.TileMode == 5)
-        //            {
-        //                //Water
-        //                currentMaterial = 9;
-        //                ClickAction.Funds -= ClickAction.WaterCost;
-
-        //            }
-        //        }
-        //        else if (ClickAction.ToolMode == 3)
-        //        {
-        //            //Create Pipe Mode
-        //            Debug.Log("Tile Manager Create Pipe Mode");
-        //        }
-        //        else if (ClickAction.ToolMode == 0)
-        //        {
-        //            //Info mode
-
-
-        //            PanelTitleText = this.gameObject.name.ToString();
-        //            //PanelText.Length - 2;
-        //            PanelTitleText = PanelTitleText.Remove(0, 2);
-        //            PanelTitleText = "Tile at " + PanelTitleText;
-        //            PanelManager.TitleText.text = PanelTitleText;
-
-        //            //ClickAction.PanelToggle = true;
-
-        //            //Debug.Log(this.gameObject.name + "      " + Height);
-        //        }
-        //        else if (ClickAction.ToolMode == 4)
-        //        {
-        //            //None Mode
-        //            Debug.Log(UserInMenu + "   " + MP.y + "   " + ClickLimitHeight);
-        //        }
-        //        else
-        //        {
-        //            Debug.Log("Tool Mode not configured correctly.");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        UserInMenu = false;
-        //        Debug.Log("Exiting Menu     " + UserInMenu + "   " + MP.y + "   " + ClickLimitHeight);
-        //    }
-        //}
-        //else
-        //{
-
-        //    UserInMenu = true;
-        //    Debug.Log("Clicked Menu Bar   " + UserInMenu + "   " + MP.y + "   " + ClickLimitHeight);
-        //}
     }
     public bool ToggleStatus()
     {
