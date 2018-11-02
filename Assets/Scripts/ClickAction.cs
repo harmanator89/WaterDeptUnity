@@ -55,6 +55,7 @@ public class ClickAction : MonoBehaviour {
     public Dropdown CurrentTileMode;
     public Dropdown CurrentAssetMode;
 
+    public static bool UserInMenu;
 
     // Use this for initialization
     void Start () {
