@@ -1683,7 +1683,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 154, y: -20.379883}
+  m_AnchoredPosition: {x: -271.6, y: -20.41}
   m_SizeDelta: {x: 171.99, y: 40.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &739807402
@@ -1997,6 +1997,13 @@ MonoBehaviour:
   PipeCount: 0
   NodeCount: 0
   infoPanel: {fileID: 0}
+  ChangeTextbox: {fileID: 0}
+  ChangeDropdown: {fileID: 0}
+  AssetTextbox: {fileID: 0}
+  AssetDropdown: {fileID: 0}
+  CurrentToolMode: {fileID: 0}
+  CurrentTileMode: {fileID: 0}
+  CurrentAssetMode: {fileID: 0}
 --- !u!1 &850140608
 GameObject:
   m_ObjectHideFlags: 0
@@ -3252,7 +3259,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Info
+  m_Text: None
 --- !u!222 &1146884861
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3908,6 +3915,8 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
+    - m_Text: None
+      m_Image: {fileID: 0}
     - m_Text: Info
       m_Image: {fileID: 0}
     - m_Text: Change Type
@@ -4158,8 +4167,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 323, y: -23.25}
-  m_SizeDelta: {x: 190.13, y: 46.48}
+  m_AnchoredPosition: {x: -78.07001, y: -23.26001}
+  m_SizeDelta: {x: 215.07, y: 46.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1439782119
 MonoBehaviour:
@@ -4346,8 +4355,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 792.7, y: -10}
-  m_SizeDelta: {x: -1585.4, y: -160}
+  m_AnchoredPosition: {x: 792.7, y: -25.025024}
+  m_SizeDelta: {x: -1585.4, y: -189.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1514130774
 MonoBehaviour:
@@ -4373,7 +4382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

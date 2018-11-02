@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class ClickAction : MonoBehaviour {
 
+    //THIS IS THE GAME CONTROLLER.
+
 
     private TileManager tileManager;
 
@@ -31,6 +33,13 @@ public class ClickAction : MonoBehaviour {
     public static float MapWaterTileTotal;
 
     public static int Funds;
+    public static int ResidentialMeterCost;
+    public static int CommercialMeterCost;
+    public static int IndustrialMeterCost;
+    public static int GrassCost;
+    public static int StreetCost;
+    public static int WaterCost;
+    
     public static int CommercialCustomers;
     public static int ResidentialCustomers;
     public static int IndustrialCustomers;
@@ -38,33 +47,78 @@ public class ClickAction : MonoBehaviour {
     public static bool PanelToggle;
     public GameObject infoPanel;
 
+    public GameObject ChangeTextbox;
+    public GameObject ChangeDropdown;
+    public GameObject AssetTextbox;
+    public GameObject AssetDropdown;
+    public Dropdown CurrentToolMode;
+    public Dropdown CurrentTileMode;
+    public Dropdown CurrentAssetMode;
+
 
     // Use this for initialization
     void Start () {
-        
-        //Change on Game Difficultly
 
-        Funds = 100000;
-
+        //Stores Panel, then sets inactive
         infoPanel = GameObject.Find("Panel");
         PanelToggle = false;
+
+
+        //Stores dropdowns
+        ChangeTextbox = GameObject.Find("ChangeTileTypeText");
+        ChangeDropdown = GameObject.Find("TileType");
+        AssetTextbox = GameObject.Find("NewAssetText");
+        AssetDropdown = GameObject.Find("NewAsset");
+        
+
+        //Gets current Text in dropdowns on Toolbar
+        CurrentToolMode = GameObject.Find("ToolMode").GetComponent<Dropdown>();
+        string CurrentToolString = CurrentToolMode.captionText.text;
+
+        CurrentAssetMode = GameObject.Find("NewAsset").GetComponent<Dropdown>();
+        string CurrentAssetString = CurrentAssetMode.captionText.text;
+
+        CurrentTileMode = GameObject.Find("TileType").GetComponent<Dropdown>();
+        string CurrentTileString = CurrentTileMode.captionText.text;
+
+        //Change on Game Difficultly
+        Funds = 100000;
+        Debug.Log("Starting funds = " + Funds);
+
+        FundsManager.FundsText = "Current Funds = $" + Funds.ToString();
+
+        ResidentialMeterCost = 400;
+        CommercialMeterCost = 1000;
+        IndustrialMeterCost = 2000;
+        GrassCost = 100;
+        StreetCost = 100;
+        WaterCost = 50;
+
+        //Sets boxes inactive
+        ChangeTextbox.SetActive(false);
+        ChangeDropdown.SetActive(false);
+        AssetTextbox.SetActive(false);
+        AssetDropdown.SetActive(false);
 
     }
 	
 	// Update is called once per frame
 	void Update () {
+        
+        //Gets current toolmode in dropdown
+        CurrentToolString = CurrentToolMode.captionText.text;
+        
+        //Gets current AssetMode in dropdown
+        CurrentAssetString = CurrentAssetMode.captionText.text;
+
+        //Gets current TileMode in dropdown
+        CurrentTileString = CurrentTileMode.captionText.text;
 
 
-        //Gets current Text in dropdowns on Toolbar
-        Dropdown CurrentToolMode = GameObject.Find("ToolMode").GetComponent<Dropdown>();
-        string CurrentToolString = CurrentToolMode.captionText.text;
 
-        Dropdown CurrentAssetMode = GameObject.Find("NewAsset").GetComponent<Dropdown>();
-        string CurrentAssetString = CurrentAssetMode.captionText.text;
 
-        Dropdown CurrentTileMode = GameObject.Find("TileType").GetComponent<Dropdown>();
-        string CurrentTileString = CurrentTileMode.captionText.text;
-
+        //Updates Funds
+        FundsManager.FundsText = "Current Funds = $" + Funds.ToString();
 
         if (CurrentToolString == "Info")
         {
@@ -72,6 +126,10 @@ public class ClickAction : MonoBehaviour {
 
             PanelToggle = true;
             infoPanel.SetActive(true);
+            ChangeTextbox.SetActive(false);
+            ChangeDropdown.SetActive(false);
+            AssetTextbox.SetActive(false);
+            AssetDropdown.SetActive(false);
         }
         else if (CurrentToolString =="Create Asset")
         {
@@ -79,6 +137,11 @@ public class ClickAction : MonoBehaviour {
 
             PanelToggle = false;
             infoPanel.SetActive(false);
+            ChangeTextbox.SetActive(false);
+            ChangeDropdown.SetActive(false);
+            AssetTextbox.SetActive(true);
+            AssetDropdown.SetActive(true);
+
             //Debug.Log("Panel False");
         }
         else if (CurrentToolString =="Change Type")
@@ -87,6 +150,11 @@ public class ClickAction : MonoBehaviour {
 
             PanelToggle = false;
             infoPanel.SetActive(false);
+            ChangeTextbox.SetActive(true);
+            ChangeDropdown.SetActive(true);
+            AssetTextbox.SetActive(false);
+            AssetDropdown.SetActive(false);
+
         }
         else if (CurrentToolString == "Create Pipe")
         {
@@ -94,9 +162,25 @@ public class ClickAction : MonoBehaviour {
 
             PanelToggle = false;
             infoPanel.SetActive(false);
+            ChangeTextbox.SetActive(false);
+            ChangeDropdown.SetActive(false);
+            AssetTextbox.SetActive(false);
+            AssetDropdown.SetActive(false);
+        }
+        else if (CurrentToolString == "None")
+        {
+            ToolMode = 4;
+
+            PanelToggle = false;
+            infoPanel.SetActive(false);
+            ChangeTextbox.SetActive(false);
+            ChangeDropdown.SetActive(false);
+            AssetTextbox.SetActive(false);
+            AssetDropdown.SetActive(false);
+
         }
         
-        //Debug.Log(ToolMode + "  " + CurrentToolString);
+        //Debug.Log(CurrentToolString + "  " + CurrentAssetString + "   " + CurrentTileString);
 
         if (CurrentAssetString == "Tank")
         {

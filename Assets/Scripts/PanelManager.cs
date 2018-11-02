@@ -31,4 +31,9 @@ public class PanelManager : MonoBehaviour {
 
 	}
 
+    void OnMouseDown()
+    {
+        Debug.Log("Panel Clicked");
+    }
+
 }

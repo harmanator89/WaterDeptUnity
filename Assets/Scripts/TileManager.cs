@@ -256,31 +256,42 @@ public class TileManager : MonoBehaviour {
                     {
                         //Residential
                         currentMaterial = 4;
+                        ClickAction.Funds -= ClickAction.ResidentialMeterCost;
                     }
                     else if (ClickAction.TileMode == 1)
                     {
                         //Commercial
                         currentMaterial = 2;
+                        ClickAction.Funds -= ClickAction.CommercialMeterCost;
+
                     }
                     else if (ClickAction.TileMode == 2)
                     {
                         //Industrial
                         currentMaterial = 3;
+                        ClickAction.Funds -= ClickAction.IndustrialMeterCost;
+
                     }
                     else if (ClickAction.TileMode == 3)
                     {
                         //Grass
                         currentMaterial = 0;
+                        ClickAction.Funds -= ClickAction.GrassCost;
+
                     }
                     else if (ClickAction.TileMode == 4)
                     {
                         //Street
                         currentMaterial = 5;
+                        ClickAction.Funds -= ClickAction.StreetCost;
+
                     }
                     else if (ClickAction.TileMode == 5)
                     {
                         //Water
                         currentMaterial = 9;
+                        ClickAction.Funds -= ClickAction.WaterCost;
+
                     }
                 }
                 else if (ClickAction.ToolMode == 3)
@@ -308,23 +319,27 @@ public class TileManager : MonoBehaviour {
 
                     //Debug.Log(this.gameObject.name + "      " + Height);
                 }
+                else if (ClickAction.ToolMode == 4)
+                {
+                    //None Mode
+                    Debug.Log(UserInMenu + "   " + MP.y + "   " + ClickLimitHeight);
+                }
                 else
                 {
                     Debug.Log("Tool Mode not configured correctly.");
                 }
             }
             else
-
             {
                 UserInMenu = false;
-                Debug.Log("Exiting Menu     " + UserInMenu);
+                Debug.Log("Exiting Menu     " + UserInMenu + "   " + MP.y + "   " + ClickLimitHeight);
             }
         }
         else
         {
 
             UserInMenu = true;
-            Debug.Log("Clicked Menu Bar   " + UserInMenu);
+            Debug.Log("Clicked Menu Bar   " + UserInMenu + "   " + MP.y + "   " + ClickLimitHeight);
         }
     }
     public bool toggleStatus()

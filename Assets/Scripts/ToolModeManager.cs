@@ -15,8 +15,8 @@ public class ToolModeManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Dropdown CurrentToolMode = GameObject.Find("ToolMode").GetComponent<Dropdown>();
-        string CurrentToolString = CurrentToolMode.captionText.text;
+        //Dropdown CurrentToolMode = GameObject.Find("ToolMode").GetComponent<Dropdown>();
+        //string CurrentToolString = CurrentToolMode.captionText.text;
 
         //if (CurrentToolString == "Create Asset")
         //{
