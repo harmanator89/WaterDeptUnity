@@ -299,6 +299,7 @@ public class TileManager : MonoBehaviour {
                                 PanelTitleText = PanelTitleText.Remove(0, 2);
                                 PanelTitleText = "Tile at " + PanelTitleText;
                                 PanelManager.TitleText.text = PanelTitleText;
+                                PanelManager.CurrentItem = "Tile";
                             }
                         }
                         else
@@ -307,6 +308,7 @@ public class TileManager : MonoBehaviour {
                             PanelTitleText = PanelTitleText.Remove(0, 2);
                             PanelTitleText = "Tile at " + PanelTitleText;
                             PanelManager.TitleText.text = PanelTitleText;
+                            PanelManager.CurrentItem = "Tile";
                         }
                     }
                     else
@@ -315,9 +317,7 @@ public class TileManager : MonoBehaviour {
                         PanelTitleText = PanelTitleText.Remove(0, 2);
                         PanelTitleText = "Tile at " + PanelTitleText;
                         PanelManager.TitleText.text = PanelTitleText;
-                        Debug.Log(PanelClickLimitHeight1 + " > " + MP.y + " > " + PanelClickLimitHeight2 + " / " + PanelClickLimitWidth + " > " + MP.x);
-                        //ClickAction.PanelToggle = true;
-
+                        PanelManager.CurrentItem = "Tile";
                         //Debug.Log(this.gameObject.name + "      " + Height);
                     }
 
@@ -325,7 +325,6 @@ public class TileManager : MonoBehaviour {
                 else if (ClickAction.ToolMode == 4)
                 {
                     //None Mode
-                    Debug.Log(ClickAction.UserInMenu + "   " + MP.y + "   " + ClickLimitHeight);
                 }
                 else
                 {
