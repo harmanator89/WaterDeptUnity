@@ -256,31 +256,27 @@ public class TileManager : MonoBehaviour {
                             else if (newMaterial == 2)
                             {
                                 //Commercial to Resid.
-                                Debug.Log("Commercial to Resid");
                                 ClickAction.ResidentialCustomers += 1;
                             }
                             else if (newMaterial == 3)
                             {
                                 //Industrial to Resid.
-                                Debug.Log("Industrial to Resid");
                                 ClickAction.ResidentialCustomers += 1;
                             }
                             else if (newMaterial == 4)
                             {
                                 //Resid to Resid.
-                                Debug.Log("Resid to Resid");
+                                ClickAction.Funds += ClickAction.ResidentialMeterCost;
 
                             }
                             else if (newMaterial == 5)
                             {
                                 //Street to Resid.
-                                Debug.Log("Street to Resid");
                                 ClickAction.ResidentialCustomers += 1;
                             }
                             else if (newMaterial == 9)
                             {
                                 //Water to Resid.
-                                Debug.Log("Water to Resid");
                                 ClickAction.ResidentialCustomers += 1;
                                 if (Height <= 0.3)
                                 {
@@ -297,39 +293,33 @@ public class TileManager : MonoBehaviour {
                             if (newMaterial == 0)
                             {
                                 //Grass to Commercial
-                                Debug.Log("Grass to Commercial");
                                 ClickAction.CommercialCustomers += 1;
                             }
                             else if (newMaterial == 2)
                             {
                                 //Commercial to Commercial.
-                                Debug.Log("Commercial to Commercial");
-
+                                ClickAction.Funds += ClickAction.CommercialMeterCost;
                             }
                             else if (newMaterial == 3)
                             {
                                 //Industrial to Commercial.
-                                Debug.Log("Industrial to Commercial");
                                 ClickAction.IndustrialCustomers -= 1;
                                 ClickAction.CommercialCustomers += 1;
                             }
                             else if (newMaterial == 4)
                             {
                                 //Resid to Commercial.
-                                Debug.Log("Resid to Commercial");
                                 ClickAction.ResidentialCustomers -= 1;
                                 ClickAction.CommercialCustomers += 1;
                             }
                             else if (newMaterial == 5)
                             {
                                 //Street to Commercial.
-                                Debug.Log("Street to Commercial");
                                 ClickAction.CommercialCustomers += 1;
                             }
                             else if (newMaterial == 9)
                             {
                                 //Water to Commercial.
-                                Debug.Log("Water to Commercial");
                                 ClickAction.CommercialCustomers += 1;
                                 if (Height <= 0.3)
                                 {
@@ -358,7 +348,7 @@ public class TileManager : MonoBehaviour {
                             else if (newMaterial == 3)
                             {
                                 //Industrial to Industrial.
-
+                                ClickAction.Funds += ClickAction.IndustrialMeterCost;
                             }
                             else if (newMaterial == 4)
                             {
@@ -393,7 +383,7 @@ public class TileManager : MonoBehaviour {
                             if (newMaterial == 0)
                             {
                                 //Grass to Grass
-
+                                ClickAction.Funds += ClickAction.GrassCost;
                             }
                             else if (newMaterial == 2)
                             {
@@ -413,12 +403,10 @@ public class TileManager : MonoBehaviour {
                             else if (newMaterial == 5)
                             {
                                 //Street to Grass.
-                                Debug.Log("Street to Grass");
                             }
                             else if (newMaterial == 9)
                             {
                                 //Water to Grass.
-                                Debug.Log("Water to Grass");
                                 if (Height <= 0.3)
                                 {
                                     Height = 0.32f;
@@ -435,7 +423,6 @@ public class TileManager : MonoBehaviour {
                             if (newMaterial == 0)
                             {
                                 //Grass to Street
-                                Debug.Log("Grass to Street");
                             }
                             else if (newMaterial == 2)
                             {
@@ -455,12 +442,11 @@ public class TileManager : MonoBehaviour {
                             else if (newMaterial == 5)
                             {
                                 //Street to Street.
-                                Debug.Log("Street to Street");
+                                ClickAction.Funds += ClickAction.StreetCost;
                             }
                             else if (newMaterial == 9)
                             {
                                 //Water to Street.
-                                Debug.Log("Water to Street");
                                 if (Height <= 0.3)
                                 {
                                     Height = 0.32f;
@@ -482,7 +468,6 @@ public class TileManager : MonoBehaviour {
                             if (newMaterial == 0)
                             {
                                 //Grass to water
-                                Debug.Log("Grass to water");
                             }
                             else if (newMaterial == 2)
                             {
@@ -492,22 +477,23 @@ public class TileManager : MonoBehaviour {
                             else if (newMaterial == 3)
                             {
                                 //Industrial to water.
-                                Debug.Log("Industrial to water");
+                                ClickAction.IndustrialCustomers -= 1;
                             }
                             else if (newMaterial == 4)
                             {
                                 //Resid to water.
-                                Debug.Log("Resid to water");
+                                ClickAction.ResidentialCustomers -= 1;
                             }
                             else if (newMaterial == 5)
                             {
                                 //Street to water.
-                                Debug.Log("Street to water");
+
                             }
                             else if (newMaterial == 9)
                             {
                                 //Water to water.
-                                Debug.Log("Water to water");
+                                ClickAction.Funds += ClickAction.WaterCost;
+
                             }
 
                         }
