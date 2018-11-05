@@ -38,7 +38,7 @@ public class TileManager : MonoBehaviour {
     public GameObject NewAsset;
     public bool TileSelected;
     public bool IsWater;
-    public bool Occupied;
+    public bool Occupied = false;
 
     //private bool UserInMenu = false;
 
@@ -234,47 +234,289 @@ public class TileManager : MonoBehaviour {
                 else if (ClickAction.ToolMode == 2)
                 {
                     //Change Tile Type
-                    if (ClickAction.TileMode == 0)
-                    {
-                        //Residential
-                        currentMaterial = 4;
-                        ClickAction.Funds -= ClickAction.ResidentialMeterCost;
-                    }
-                    else if (ClickAction.TileMode == 1)
-                    {
-                        //Commercial
-                        currentMaterial = 2;
-                        ClickAction.Funds -= ClickAction.CommercialMeterCost;
 
-                    }
-                    else if (ClickAction.TileMode == 2)
-                    {
-                        //Industrial
-                        currentMaterial = 3;
-                        ClickAction.Funds -= ClickAction.IndustrialMeterCost;
 
-                    }
-                    else if (ClickAction.TileMode == 3)
-                    {
-                        //Grass
-                        currentMaterial = 0;
-                        ClickAction.Funds -= ClickAction.GrassCost;
+                    newMaterial = currentMaterial;
 
-                    }
-                    else if (ClickAction.TileMode == 4)
+                    if (Occupied == false)
                     {
-                        //Street
-                        currentMaterial = 5;
-                        ClickAction.Funds -= ClickAction.StreetCost;
 
+
+                        if (ClickAction.TileMode == 0)
+                        {
+                            //Change to Residential
+                            currentMaterial = 4;
+                            ClickAction.Funds -= ClickAction.ResidentialMeterCost;
+
+                            if (newMaterial == 0)
+                            {
+                                //Grass to Resid.
+                                ClickAction.ResidentialCustomers += 1;
+                            }
+                            else if (newMaterial == 2)
+                            {
+                                //Commercial to Resid.
+                                Debug.Log("Commercial to Resid");
+                                ClickAction.ResidentialCustomers += 1;
+                            }
+                            else if (newMaterial == 3)
+                            {
+                                //Industrial to Resid.
+                                Debug.Log("Industrial to Resid");
+                                ClickAction.ResidentialCustomers += 1;
+                            }
+                            else if (newMaterial == 4)
+                            {
+                                //Resid to Resid.
+                                Debug.Log("Resid to Resid");
+
+                            }
+                            else if (newMaterial == 5)
+                            {
+                                //Street to Resid.
+                                Debug.Log("Street to Resid");
+                                ClickAction.ResidentialCustomers += 1;
+                            }
+                            else if (newMaterial == 9)
+                            {
+                                //Water to Resid.
+                                Debug.Log("Water to Resid");
+                                ClickAction.ResidentialCustomers += 1;
+                                if (Height <= 0.3)
+                                {
+                                    Height = 0.32f;
+                                }
+                            }
+                        }
+                        else if (ClickAction.TileMode == 1)
+                        {
+                            //Change to Commercial
+                            currentMaterial = 2;
+                            ClickAction.Funds -= ClickAction.CommercialMeterCost;
+
+                            if (newMaterial == 0)
+                            {
+                                //Grass to Commercial
+                                Debug.Log("Grass to Commercial");
+                                ClickAction.CommercialCustomers += 1;
+                            }
+                            else if (newMaterial == 2)
+                            {
+                                //Commercial to Commercial.
+                                Debug.Log("Commercial to Commercial");
+
+                            }
+                            else if (newMaterial == 3)
+                            {
+                                //Industrial to Commercial.
+                                Debug.Log("Industrial to Commercial");
+                                ClickAction.IndustrialCustomers -= 1;
+                                ClickAction.CommercialCustomers += 1;
+                            }
+                            else if (newMaterial == 4)
+                            {
+                                //Resid to Commercial.
+                                Debug.Log("Resid to Commercial");
+                                ClickAction.ResidentialCustomers -= 1;
+                                ClickAction.CommercialCustomers += 1;
+                            }
+                            else if (newMaterial == 5)
+                            {
+                                //Street to Commercial.
+                                Debug.Log("Street to Commercial");
+                                ClickAction.CommercialCustomers += 1;
+                            }
+                            else if (newMaterial == 9)
+                            {
+                                //Water to Commercial.
+                                Debug.Log("Water to Commercial");
+                                ClickAction.CommercialCustomers += 1;
+                                if (Height <= 0.3)
+                                {
+                                    Height = 0.32f;
+                                }
+                            }
+
+                        }
+                        else if (ClickAction.TileMode == 2)
+                        {
+                            //Change to Industrial
+                            currentMaterial = 3;
+                            ClickAction.Funds -= ClickAction.IndustrialMeterCost;
+
+                            if (newMaterial == 0)
+                            {
+                                //Grass to Industrial
+                                ClickAction.IndustrialCustomers += 1;
+                            }
+                            else if (newMaterial == 2)
+                            {
+                                //Commercial to Industrial.
+                                ClickAction.CommercialCustomers -= 1;
+                                ClickAction.IndustrialCustomers += 1;
+                            }
+                            else if (newMaterial == 3)
+                            {
+                                //Industrial to Industrial.
+
+                            }
+                            else if (newMaterial == 4)
+                            {
+                                //Resid to Industrial.
+                                ClickAction.ResidentialCustomers -= 1;
+                                ClickAction.IndustrialCustomers += 1;
+                            }
+                            else if (newMaterial == 5)
+                            {
+                                //Street to Industrial.
+
+                                ClickAction.IndustrialCustomers += 1;
+                            }
+                            else if (newMaterial == 9)
+                            {
+                                //Water to Industrial.
+
+                                ClickAction.IndustrialCustomers += 1;
+                                if (Height <= 0.3)
+                                {
+                                    Height = 0.32f;
+                                }
+                            }
+
+                        }
+                        else if (ClickAction.TileMode == 3)
+                        {
+                            //Change to Grass
+                            currentMaterial = 0;
+                            ClickAction.Funds -= ClickAction.GrassCost;
+
+                            if (newMaterial == 0)
+                            {
+                                //Grass to Grass
+
+                            }
+                            else if (newMaterial == 2)
+                            {
+                                //Commercial to Grass.
+                                ClickAction.CommercialCustomers -= 1;
+                            }
+                            else if (newMaterial == 3)
+                            {
+                                //Industrial to Grass.
+                                ClickAction.IndustrialCustomers -= 1;
+                            }
+                            else if (newMaterial == 4)
+                            {
+                                //Resid to Grass.
+                                ClickAction.ResidentialCustomers -= 1;
+                            }
+                            else if (newMaterial == 5)
+                            {
+                                //Street to Grass.
+                                Debug.Log("Street to Grass");
+                            }
+                            else if (newMaterial == 9)
+                            {
+                                //Water to Grass.
+                                Debug.Log("Water to Grass");
+                                if (Height <= 0.3)
+                                {
+                                    Height = 0.32f;
+                                }
+                            }
+
+                        }
+                        else if (ClickAction.TileMode == 4)
+                        {
+                            //Change to Street
+                            currentMaterial = 5;
+                            ClickAction.Funds -= ClickAction.StreetCost;
+
+                            if (newMaterial == 0)
+                            {
+                                //Grass to Street
+                                Debug.Log("Grass to Street");
+                            }
+                            else if (newMaterial == 2)
+                            {
+                                //Commercial to Street.
+                                ClickAction.CommercialCustomers -= 1;
+                            }
+                            else if (newMaterial == 3)
+                            {
+                                //Industrial to Street.
+                                ClickAction.IndustrialCustomers -= 1;
+                            }
+                            else if (newMaterial == 4)
+                            {
+                                //Resid to Street.
+                                ClickAction.ResidentialCustomers -= 1;
+                            }
+                            else if (newMaterial == 5)
+                            {
+                                //Street to Street.
+                                Debug.Log("Street to Street");
+                            }
+                            else if (newMaterial == 9)
+                            {
+                                //Water to Street.
+                                Debug.Log("Water to Street");
+                                if (Height <= 0.3)
+                                {
+                                    Height = 0.32f;
+                                }
+                            }
+
+                        }
+                        else if (ClickAction.TileMode == 5)
+                        {
+                            //Change to water
+                            currentMaterial = 9;
+                            if (Height >= 0.3)
+                            {
+                                Height = 0.28f;
+                            }
+
+                            ClickAction.Funds -= ClickAction.WaterCost;
+
+                            if (newMaterial == 0)
+                            {
+                                //Grass to water
+                                Debug.Log("Grass to water");
+                            }
+                            else if (newMaterial == 2)
+                            {
+                                //Commercial to water.
+                                ClickAction.CommercialCustomers -= 1;
+                            }
+                            else if (newMaterial == 3)
+                            {
+                                //Industrial to water.
+                                Debug.Log("Industrial to water");
+                            }
+                            else if (newMaterial == 4)
+                            {
+                                //Resid to water.
+                                Debug.Log("Resid to water");
+                            }
+                            else if (newMaterial == 5)
+                            {
+                                //Street to water.
+                                Debug.Log("Street to water");
+                            }
+                            else if (newMaterial == 9)
+                            {
+                                //Water to water.
+                                Debug.Log("Water to water");
+                            }
+
+                        }
                     }
-                    else if (ClickAction.TileMode == 5)
+                    else
                     {
-                        //Water
-                        currentMaterial = 9;
-                        ClickAction.Funds -= ClickAction.WaterCost;
-
+                        Debug.Log("Tile is Occupied, you can't change type now.");
                     }
+                    Debug.Log(ClickAction.ResidentialCustomers + "  " + ClickAction.CommercialCustomers + "  " + ClickAction.IndustrialCustomers);
                 }
                 else if (ClickAction.ToolMode == 3)
                 {

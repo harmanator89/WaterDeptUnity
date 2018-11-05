@@ -94,6 +94,7 @@ public class ClickAction : MonoBehaviour {
         GrassCost = 100;
         StreetCost = 100;
         WaterCost = 50;
+        Debug.Log(ResidentialCustomers + "  " + CommercialCustomers + "  " + IndustrialCustomers);
 
         //Sets boxes inactive
         ChangeTextbox.SetActive(false);

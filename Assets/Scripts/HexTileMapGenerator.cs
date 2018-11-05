@@ -21,7 +21,6 @@ public class HexTileMapGenerator : MonoBehaviour
 
     public bool AutoUpdate;
 
-    //1.8, 0, 1.565
     private float tileXOffset = 1.00f;
     private float tileYoffset = 0f;
     private float tileZoffset = 1.00f;
