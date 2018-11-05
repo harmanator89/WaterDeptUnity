@@ -24,6 +24,9 @@ public class PanelManager : MonoBehaviour {
     public Text Button4Text;
 
     public string TileSearch;
+    public string TileSearchLock;
+    public GameObject CurrentTile;
+    public bool CurrentTileWater;
 
     // Use this for initialization
     void Start () {
@@ -74,9 +77,23 @@ public class PanelManager : MonoBehaviour {
             TileSearch = TileSearch.Remove(0, 8);
             TileSearch = "T " + TileSearch;
 
+            if (TileSearchLock == TileSearch)
+            {
+
+            }
+            else
+            {
+                CurrentTile = GameObject.Find(TileSearch);
+                CurrentTileWater = GameObject.Find(TileSearch).GetComponent<TileManager>().IsWater;
+                TileSearchLock = TileSearch;
+
+            }
+
+
+
             Text1.text = CurrentItem;
             Text2.text = TileSearch;
-            Text3.text = "Tile2";
+            Text3.text = CurrentTileWater.ToString();
             Text4.text = "Tile1";
 
             Button1Text.text = "Tile1";

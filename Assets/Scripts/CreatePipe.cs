@@ -17,6 +17,7 @@ public class CreatePipe : MonoBehaviour{
 
     private Vector3 StartVector;
     private Vector3 StopVector;
+    private float Distance;
     private Vector3 ObjectHit;
     private string ObjectHitName;
     private string ObjectHitParentName;
@@ -188,16 +189,12 @@ public class CreatePipe : MonoBehaviour{
 
         if (ObjectHitParentName == "PipeNetwork" || ObjectHitParentName == "AssetRegistry")
         {
-            //start = Instantiate(NodePreFab);
+            //If game object is already present in PipeNetwork or AssetRegistry, use that instead of new.
             start = GameObject.Find(hitInfo.transform.name);
             DestroyStart = true;
-            //Debug.Log("start instantiate complete.");
 
             start.transform.position = ObjectHit;
-            //Need to not instantiate if node already exists.......
-
-            //Debug.Log("start transform complete");
-
+            
             if (ObjectHitParentName == "PipeNetwork")
             {
                 start.name = start.transform.position.x.ToString() + "," + start.transform.position.z.ToString();
@@ -215,14 +212,12 @@ public class CreatePipe : MonoBehaviour{
             camera.GetComponent<ClickAction>().NodeCount += 1;
 
             end.transform.position = GetWorldPoint();
-
-            //end.name = "Node @ " + end.transform.position.ToString();
             end.transform.parent = GameObject.Find("PipeNetwork").transform;
 
 
             Pipe = Instantiate(PipePreFab, start.transform.position, Quaternion.identity) as GameObject;
             Pipe.transform.parent = GameObject.Find("PipeNetwork").transform;
-            //Pipe.transform.Rotate(90, 0, 0);
+
         }
         else
         {
@@ -230,12 +225,9 @@ public class CreatePipe : MonoBehaviour{
             camera.GetComponent<ClickAction>().NodeCount += 1;
             DestroyStart = false;
 
-            //Debug.Log("start instantiate complete.");
-            
-            start.transform.position = ObjectHit;
-            //Need to not instantiate if node already exists.......
+            StartVector = new Vector3(ObjectHit.x, 0.9f, ObjectHit.z);
 
-            //Debug.Log("start transform complete");
+            start.transform.position = StartVector;
 
             start.name = start.transform.position.x.ToString() + "," + start.transform.position.z.ToString();
             start.transform.parent = GameObject.Find("PipeNetwork").transform;
@@ -261,16 +253,18 @@ public class CreatePipe : MonoBehaviour{
     {
         creating = false;
         //Debug.Log("Setting Pipe End " + DestroyStop);
-
+        Debug.Log(Distance);
         if (DestroyStop == false)
         {
             end.name = end.transform.position.x.ToString() + "," + end.transform.position.z.ToString();
             end.layer = 0;
             StopName = end.transform.position.x.ToString() + "," + end.transform.position.z.ToString();
-            //end.transform.position =
+
 
             Pipe.name = "Pipe(" + StartName + ":" + StopName + ")";
+            Pipe.layer = 0;
             Pipe.GetComponent<PipeManager>().IsPlaced = true;
+            Pipe.GetComponent<PipeManager>().Length = Distance;
             ClickAction.NodeUpdateCount = 0;
             ClickAction.PipeUpdatedCount = 0;
 
@@ -280,6 +274,7 @@ public class CreatePipe : MonoBehaviour{
         {
             StopName = end.transform.position.x.ToString() + "," + end.transform.position.z.ToString();
             Pipe.name = "Pipe(" + StartName + ":" + StopName + ")";
+            Pipe.layer = 0;
             Pipe.GetComponent<PipeManager>().IsPlaced = true;
             GameObject.Destroy(end);
             camera.GetComponent<ClickAction>().NodeCount -= 1;
@@ -311,7 +306,8 @@ public class CreatePipe : MonoBehaviour{
             DestroyStop = false;
         }
 
-        end.transform.position = ObjectHit;
+        StopVector = new Vector3(ObjectHit.x, 0.9f, ObjectHit.z);
+        end.transform.position = StopVector;
         //Debug.Log(DestroyStop);
         //end.transform.position = GetWorldPoint();
         AdjustPipe();
@@ -322,12 +318,12 @@ public class CreatePipe : MonoBehaviour{
         start.transform.LookAt(end.transform);
         end.transform.LookAt(start.transform);
 
-        float distance = Vector3.Distance(start.transform.position, end.transform.position);
+        Distance = Vector3.Distance(start.transform.position, end.transform.position);
 
-        Pipe.transform.position = start.transform.position + distance / 2 * start.transform.forward;
+        Pipe.transform.position = start.transform.position + Distance / 2 * start.transform.forward;
 
         Pipe.transform.rotation = start.transform.rotation;
-        Pipe.transform.localScale = new Vector3(Pipe.transform.localScale.x, 0.5f, distance/2);
+        Pipe.transform.localScale = new Vector3(Pipe.transform.localScale.x, 0.5f, Distance/2);
 
     }
 
@@ -341,9 +337,10 @@ public class CreatePipe : MonoBehaviour{
         if (Physics.Raycast(ray, out hitInfo))
         {
             Vector3 objectHit = hitInfo.transform.gameObject.transform.position;
+            objectHit = new Vector3(objectHit.x, 0.9f, objectHit.z);
             TestString = hitInfo.transform.parent.name;
             
-            //Debug.Log(message: hitInfo.transform.parent.name);
+            //Debug.Log(objectHit);
             return objectHit;
 
         }
