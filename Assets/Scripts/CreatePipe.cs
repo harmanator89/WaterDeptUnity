@@ -80,7 +80,7 @@ public class CreatePipe : MonoBehaviour{
 
                         Vector3 m = new Vector3(ObjectHit.x, 0.355f, ObjectHit.z);
                         start.transform.position = m;
-
+                        ClickAction.Funds -= ClickAction.TankCost;
                         Debug.Log("tank transform complete");
 
                         start.name = "Tank @ " + start.transform.position.ToString();
@@ -95,7 +95,7 @@ public class CreatePipe : MonoBehaviour{
 
                         Vector3 m = new Vector3(ObjectHit.x, 0.127f, ObjectHit.z);
                         start.transform.position = m;
-
+                        ClickAction.Funds -= ClickAction.PumpCost;
                         Debug.Log("pump transform complete");
 
                         start.name = "Pump @ " + start.transform.position.ToString();
@@ -110,7 +110,7 @@ public class CreatePipe : MonoBehaviour{
 
                         Vector3 m = new Vector3(ObjectHit.x, 0.1f, ObjectHit.z);
                         start.transform.position = m;
-
+                        ClickAction.Funds -= ClickAction.PRVCost;
                         Debug.Log("PRV transform complete");
 
                         start.name = "PRV @ " + start.transform.position.ToString();
@@ -125,7 +125,7 @@ public class CreatePipe : MonoBehaviour{
 
                         Vector3 m = new Vector3(ObjectHit.x, 0.1f, ObjectHit.z);
                         start.transform.position = m;
-
+                        ClickAction.Funds -= ClickAction.ValveCost;
                         Debug.Log("Valve transform complete");
 
                         start.name = "Valve @ " + start.transform.position.ToString();
@@ -140,7 +140,7 @@ public class CreatePipe : MonoBehaviour{
 
                         Vector3 m = new Vector3(ObjectHit.x - 1.541f, 0.1f, ObjectHit.z + .509f);
                         start.transform.position = m;
-
+                        ClickAction.Funds -= ClickAction.WaterTreatmentCost;
                         Debug.Log("WT transform complete");
 
                         start.name = "WaterTreatment @ " + start.transform.position.ToString();

@@ -39,7 +39,13 @@ public class ClickAction : MonoBehaviour {
     public static int GrassCost;
     public static int StreetCost;
     public static int WaterCost;
-    
+
+    public static int TankCost;
+    public static int ValveCost;
+    public static int PRVCost;
+    public static int WaterTreatmentCost;
+    public static int PumpCost;
+
     public static int CommercialCustomers;
     public static int ResidentialCustomers;
     public static int IndustrialCustomers;
@@ -97,10 +103,15 @@ public class ClickAction : MonoBehaviour {
         GrassCost = 100;
         StreetCost = 100;
         WaterCost = 50;
-        Debug.Log(ResidentialCustomers + "  " + CommercialCustomers + "  " + IndustrialCustomers);
 
-        //Sets boxes inactive
-        ChangeTextbox.SetActive(false);
+        TankCost = 1000;
+        ValveCost = 1000;
+        PRVCost = 2500;
+        WaterTreatmentCost = 10000;
+        PumpCost = 1500;
+
+    //Sets boxes inactive
+    ChangeTextbox.SetActive(false);
         ChangeDropdown.SetActive(false);
         AssetTextbox.SetActive(false);
         AssetDropdown.SetActive(false);
