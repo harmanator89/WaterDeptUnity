@@ -74,6 +74,7 @@ public class TileManager : MonoBehaviour {
         NameZ = this.gameObject.transform.position.z;
 
         NameSplit = this.name;
+        ClickAction.UpdateNetwork = false;
 
     }
 

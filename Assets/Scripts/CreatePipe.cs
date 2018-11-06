@@ -265,7 +265,7 @@ public class CreatePipe : MonoBehaviour{
             Pipe.layer = 0;
             Pipe.GetComponent<PipeManager>().IsPlaced = true;
             Pipe.GetComponent<PipeManager>().Length = Distance;
-            ClickAction.Pipes.Add(this.gameObject);
+            ClickAction.Pipes.Add(Pipe.gameObject);
             ClickAction.NodeUpdateCount = 0;
             ClickAction.PipeUpdatedCount = 0;
 
@@ -278,7 +278,7 @@ public class CreatePipe : MonoBehaviour{
             Pipe.layer = 0;
             Pipe.GetComponent<PipeManager>().IsPlaced = true;
             Pipe.GetComponent<PipeManager>().Length = Distance;
-            ClickAction.Pipes.Add(this.gameObject);
+            ClickAction.Pipes.Add(Pipe.gameObject);
             GameObject.Destroy(end);
             camera.GetComponent<ClickAction>().NodeCount -= 1;
         }
