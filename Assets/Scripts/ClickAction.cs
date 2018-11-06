@@ -22,7 +22,7 @@ public class ClickAction : MonoBehaviour {
     public static int PipeUpdatedCount;
     public int NodeCount;
     public static int NodeUpdateCount;
-    public static bool UpdateNetwork;
+    public static bool UpdateNetwork = false;
 
 
     public static int ToolMode;
@@ -56,6 +56,9 @@ public class ClickAction : MonoBehaviour {
     public Dropdown CurrentAssetMode;
 
     public static bool UserInMenu;
+
+    public static List<GameObject> Pipes = new List<GameObject>();
+
 
     // Use this for initialization
     void Start () {

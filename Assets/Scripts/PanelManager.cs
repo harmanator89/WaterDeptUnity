@@ -94,7 +94,7 @@ public class PanelManager : MonoBehaviour {
             Text1.text = CurrentItem;
             Text2.text = TileSearch;
             Text3.text = CurrentTileWater.ToString();
-            Text4.text = "Tile1";
+            Text4.text = CurrentTile.GetComponent<TileManager>().DistanceToPipe.ToString();
 
             Button1Text.text = "Tile1";
             Button2Text.text = "Tile2";

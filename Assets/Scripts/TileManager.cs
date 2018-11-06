@@ -36,10 +36,16 @@ public class TileManager : MonoBehaviour {
     public bool BottomWater;
 
     public GameObject NewAsset;
+
     public bool TileSelected;
     public bool IsWater;
     public bool Occupied = false;
 
+    public static GameObject ClosestPipe;
+    public GameObject Tmin = null;
+    public float DistanceToPipe;
+    
+    
     //private bool UserInMenu = false;
 
     public static Material CurrentType;
@@ -50,11 +56,13 @@ public class TileManager : MonoBehaviour {
     public float NameY;
     public float NameZ;
 
+
+
     private string PanelTitleText;
 
     MeshRenderer m_Renderer;
 
-         
+
     // Use this for initialization
     void Start() {
         m_Renderer = GetComponent<MeshRenderer>();
@@ -91,6 +99,25 @@ public class TileManager : MonoBehaviour {
         else
         {
             IsWater = false;
+        }
+
+        if (ClickAction.UpdateNetwork == true)
+        {
+            
+            float MinDist = Mathf.Infinity;
+            foreach (GameObject t in ClickAction.Pipes)
+            {
+                float dist = Vector3.Distance(t.transform.position, this.gameObject.transform.position);
+                if (dist < MinDist)
+                {
+                    Tmin = t;
+                    MinDist = dist;
+                }
+            }
+
+            ClosestPipe = Tmin;
+            DistanceToPipe = MinDist;
+
         }
 
 
