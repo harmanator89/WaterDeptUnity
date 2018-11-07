@@ -241,7 +241,7 @@ public class TileManager : MonoBehaviour {
         if (MP.y > ClickLimitHeight)
         {
             //Mouse clicked in menu area
-            Debug.Log("User clicked in menu area  " + MP.y);
+            //Debug.Log("User clicked in menu area  " + MP.y);
             ClickAction.UserInMenu = true;
         }
         else
@@ -249,7 +249,7 @@ public class TileManager : MonoBehaviour {
             if (ClickAction.UserInMenu == true)
             {
                 //User clicked off of menu after clicking on it
-                Debug.Log("User clicked off menu area   ");
+                //Debug.Log("User clicked off menu area   ");
                 ClickAction.UserInMenu = false;
             }
             else
@@ -257,7 +257,7 @@ public class TileManager : MonoBehaviour {
                 if (ClickAction.ToolMode == 1)
                 {
                     //Create Asset Mode
-                    Debug.Log("Tile Manager Create Asset");
+                    //Debug.Log("Tile Manager Create Asset");
                 }
                 else if (ClickAction.ToolMode == 2)
                 {

@@ -8,6 +8,7 @@ TagManager:
   - Tanks
   - PRVs
   - Valves
+  - WaterTreatment
   layers:
   - Default
   - TransparentFX

@@ -138,7 +138,7 @@ public class CreatePipe : MonoBehaviour{
 
                         Debug.Log("Water Treatment Instantiate complete.");
 
-                        Vector3 m = new Vector3(ObjectHit.x - 1.541f, 0.1f, ObjectHit.z + .509f);
+                        Vector3 m = new Vector3(ObjectHit.x, 0.1f, ObjectHit.z);
                         start.transform.position = m;
                         ClickAction.Funds -= ClickAction.WaterTreatmentCost;
                         Debug.Log("WT transform complete");
@@ -183,8 +183,8 @@ public class CreatePipe : MonoBehaviour{
         ObjectHitParentName = hitInfo.transform.parent.name;
         ObjectHitName = hitInfo.transform.name;
 
-        //Debug.Log("Parent: " + ObjectHitParentName);
-        //Debug.Log("Name: " + ObjectHitName);
+        Debug.Log("Parent: " + ObjectHitParentName);
+        Debug.Log("Name: " + ObjectHitName);
         //Debug.Log("Name: " + ObjectHitName);
 
         if (ObjectHitParentName == "PipeNetwork" || ObjectHitParentName == "AssetRegistry")
@@ -203,7 +203,7 @@ public class CreatePipe : MonoBehaviour{
             }
             else
             {
-
+                Debug.Log("Dis an Asset");
             }
             start.layer = 0;
             StartName = start.transform.position.x.ToString() + "," + start.transform.position.z.ToString();

@@ -2139,7 +2139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfed372f93702f94b975ed5421b0c6dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PipePreFab: {fileID: 1464557273747640, guid: ce5953051c8b6e24d96b269e9d6cab36, type: 2}
+  PipePreFab: {fileID: 1686288033565798, guid: bd265e4a7194e004da58e1822714ee1e, type: 2}
   NodePreFab: {fileID: 1979310075287252, guid: fbe5c8a6a161ce245aacf763c0c7d95f, type: 2}
   Assets:
   - {fileID: 1007926195430324, guid: a4f32cddc89d0e34ea4043e97e96aa79, type: 2}
@@ -4370,6 +4370,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c27c3270386364a43b479e39510d665b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Text1: {fileID: 0}
+  Text2: {fileID: 0}
+  Text3: {fileID: 0}
+  Text4: {fileID: 0}
+  Button1: {fileID: 0}
+  Button2: {fileID: 0}
+  Button3: {fileID: 0}
+  Button4: {fileID: 0}
+  Button1Text: {fileID: 0}
+  Button2Text: {fileID: 0}
+  Button3Text: {fileID: 0}
+  Button4Text: {fileID: 0}
+  TileSearch: 
+  TileSearchLock: 
+  CurrentTile: {fileID: 0}
+  CurrentTileWater: 0
 --- !u!114 &1514130775
 MonoBehaviour:
   m_ObjectHideFlags: 0
