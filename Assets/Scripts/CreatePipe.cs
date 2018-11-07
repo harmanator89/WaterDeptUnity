@@ -225,7 +225,7 @@ public class CreatePipe : MonoBehaviour{
             camera.GetComponent<ClickAction>().NodeCount += 1;
             DestroyStart = false;
 
-            StartVector = new Vector3(ObjectHit.x, 0.9f, ObjectHit.z);
+            StartVector = new Vector3(ObjectHit.x, 0.3f, ObjectHit.z);
 
             start.transform.position = StartVector;
 
@@ -309,7 +309,7 @@ public class CreatePipe : MonoBehaviour{
             DestroyStop = false;
         }
 
-        StopVector = new Vector3(ObjectHit.x, 0.9f, ObjectHit.z);
+        StopVector = new Vector3(ObjectHit.x, 0.3f, ObjectHit.z);
         end.transform.position = StopVector;
         //Debug.Log(DestroyStop);
         //end.transform.position = GetWorldPoint();
@@ -324,9 +324,9 @@ public class CreatePipe : MonoBehaviour{
         Distance = Vector3.Distance(start.transform.position, end.transform.position);
 
         Pipe.transform.position = start.transform.position + Distance / 2 * start.transform.forward;
-
         Pipe.transform.rotation = start.transform.rotation;
-        Pipe.transform.localScale = new Vector3(Pipe.transform.localScale.x, 0.5f, Distance/2);
+
+        Pipe.transform.localScale = new Vector3(0.2f, 0.2f, Distance / 2);
 
     }
 
@@ -340,7 +340,7 @@ public class CreatePipe : MonoBehaviour{
         if (Physics.Raycast(ray, out hitInfo))
         {
             Vector3 objectHit = hitInfo.transform.gameObject.transform.position;
-            objectHit = new Vector3(objectHit.x, 0.9f, objectHit.z);
+            objectHit = new Vector3(objectHit.x, 0.3f, objectHit.z);
             TestString = hitInfo.transform.parent.name;
             
             //Debug.Log(objectHit);
